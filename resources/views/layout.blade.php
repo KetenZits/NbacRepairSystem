@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- ปิดการใช้ -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"
@@ -48,52 +49,81 @@
 
     <!-- เชื่อมโยง Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Raleway:500,700" rel="stylesheet">
-
     <style>
-        .headnav {
-            background-color: #ffffff;
-            color: #0080ff;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 75px;
+        body{
+            font-family: "Noto Sans Thai", sans-serif;
         }
-        .headnav .header-logo h3 {
-            font-size: 30px;
-            color: #0080ff;
-            margin: 0;
-            margin-bottom: 4px;
+        .nav-custom {
+            padding: 25px 0;
         }
-        .headnav ul{
-            display: flex;
-            list-style: none;
-            align-items: center;
-            gap: 20px;
-            margin-top: 12px;
+        .navdetail-custom{
+            margin-right: 15px;
+            margin-left: 15px;
         }
-        .headnav ul li a{
-            text-decoration: none;
-            color: #0080ff;
-            font-size: 20px;
+        .logo{
+            font-size: 25px;
+            font-weight: 600;
+            color: rgb(0, 162, 255);
+        }
+        .logo:hover{
+            color: rgb(0, 162, 255);
+        }
+        .toggler-custom{
+            border: none;
+            color: rgb(0, 162, 255);
+        }
+        .toggler-custom span{
+            border: none;
+            color: rgb(0, 162, 255);
+        }
+        .toggler-custom:active{
+            border: none;
+        }
+        .nav-link{
+            font-size: 18px;
+            color: rgb(0, 162, 255);
+        }
+        .nav-link:hover{
+            color: rgb(0, 133, 210);
+            transform: scale(1.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-link{
+            margin-left: 10px 0;
         }
     </style>
 </head>
 <body>
     
-    <div class="headnav shadow-sm">
-        <div class="header-logo">
-            <h3>NBACREPAIR</h3>
-        </div>
-
-        <div>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light nav-custom shadow">
+        <div class="container-fluid navdetail-custom">
+          <a class="navbar-brand logo" href="#">MyBrand</a>
+      
+          <!-- ปุ่ม toggle สำหรับมือถือ -->
+          <button class="navbar-toggler toggler-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""><i class="fa-solid fa-bars"></i></span>
+          </button>
+      
+          <!-- เมนูที่ซ่อน/แสดง -->
+          <div class="collapse navbar-collapse text-center collapse-custom" id="navbarNav">
+            <ul class="navbar-nav ms-auto"> <!-- ms-auto ดันไปขวา -->
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Service</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
             </ul>
+          </div>
         </div>
-    </div>
+      </nav>
 
 
 
