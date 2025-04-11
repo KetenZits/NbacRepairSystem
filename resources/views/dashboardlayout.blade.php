@@ -60,9 +60,9 @@
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col items-center justify-center">
-            <div class="flex flex-row items-center justify-around container mx-auto py-7 bg-blue-400 lg:py-0 bg-none">
-                <div class="flex text-3xl lg:hidden">Dashboard <i class="fas fa-chart-line ml-2"></i></div>
-                <label for="my-drawer-2" class="drawer-button lg:hidden text-white flex items-end">
+            <div class="flex flex-row items-center justify-around w-full py-7 bg-white lg:py-0 bg-none shadow-md">
+                <div class="flex text-3xl lg:hidden text-blue-400">Dashboard <i class="fas fa-chart-line ml-2 animate-bounce"></i></div>
+                <label for="my-drawer-2" class="drawer-button lg:hidden text-blue-400 flex items-end">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </label>
             </div>
@@ -77,9 +77,11 @@
           <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
           <ul class="menu bg-blue-400 min-h-full w-80 p-4 text-white">
             <!-- Sidebar content here -->
-            <div>Dashboard <i class="fas fa-chart-line"></i></div>
+            <div>
+            <div class="text-3xl">Dashboard <i class="fas fa-chart-line animate-bounce"></i></div>
             <li><a>Sidebar Item 1</a></li>
             <li><a>Sidebar Item 2</a></li>
+          </div>
           </ul>
         </div>
       </div>
