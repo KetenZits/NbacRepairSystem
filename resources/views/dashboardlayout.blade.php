@@ -76,8 +76,12 @@
             <!-- Sidebar content here -->
             <div>
             <div class="text-3xl">Dashboard <i class="fas fa-chart-line animate-bounce"></i></div>
-            <li><a>Sidebar Item 1</a></li>
-            <li><a>Sidebar Item 2</a></li>
+            <div class="mt-5">
+            <li><a class="text-xl">Home</a></li>
+            <li><a class="text-xl">Services</a></li>
+            <li><a class="text-xl">About Us</a></li>
+            <li><a class="text-xl">Contact</a></li>
+            </div>
           </div>
           </ul>
         </div>

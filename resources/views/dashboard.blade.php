@@ -13,7 +13,7 @@
           
         </div>
         <div class="navbar-end">
-          <button class="btn btn-ghost btn-circle hover:btn-info hover:text-white">
+          <button class="btn btn-ghost btn-circle hover:btn-info hover:text-white" onclick="my_modal_3.showModal()">
             <div class="indicator">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /> </svg>
               <span class="badge badge-xs badge-error indicator-item"></span>
@@ -21,6 +21,16 @@
           </button>
         </div>
       </div>
+
+      <dialog id="my_modal_3" class="modal">
+        <div class="modal-box">
+          <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+          <h3 class="text-lg font-bold">Hello!</h3>
+          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+        </div>
+      </dialog>
 
       <div class="flex flex-col items-center justify-between my-10 lg:flex-row lg:flex-wrap lg:justify-around">
       <div class="flex">
@@ -100,77 +110,121 @@
   <div class="flex flex-col gap-5 justify-around lg:flex-row">
 
     <ul class="list bg-base-100 rounded-box shadow-md w-full"> 
-      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Notification Task</li>
+      <li class="list-row tracking-wide">Notification Task</li>
       
-      <li class="list-row">
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
         <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/></div>
         <div>
           <div>Tester001</div>
           <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการแจ้งซ่อม 001</div>
         </div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn rounded-full btn-info text-white">
           <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
         </button>
       </li>
       
-      <li class="list-row">
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
         <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/4@94.webp"/></div>
         <div>
           <div>Tester001</div>
           <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการแจ้งซ่อม 001</div>
         </div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn rounded-full btn-info text-white">
           <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
         </button>
       </li>
       
-      <li class="list-row">
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
         <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
         <div>
           <div>Tester001</div>
           <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการแจ้งซ่อม 001</div>
         </div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn rounded-full btn-info text-white">
           <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
         </button>
-      </li>    
+      </li>
+      
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
+        <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
+        <div>
+          <div>Tester001</div>
+          <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการแจ้งซ่อม 001</div>
+        </div>
+        <button class="btn rounded-full btn-info text-white">
+          <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+        </button>
+      </li>
+
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
+        <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
+        <div>
+          <div>Tester001</div>
+          <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการแจ้งซ่อม 001</div>
+        </div>
+        <button class="btn rounded-full btn-info text-white">
+          <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+        </button>
+      </li>
     </ul>
 
     <ul class="list bg-base-100 rounded-box shadow-md w-full"> 
-      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Export Excel History</li>
+      <li class="list-row tracking-wide">Export Excel History</li>
       
-      <li class="list-row">
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
         <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/></div>
         <div>
           <div>Tester001</div>
           <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการ Export Report แจ้งซ่อม ณ วันที่ date</div>
         </div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn rounded-full btn-info text-white">
           <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
         </button>
       </li>
       
-      <li class="list-row">
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
         <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/4@94.webp"/></div>
         <div>
           <div>Tester001</div>
           <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการ Export Report แจ้งซ่อม ณ วันที่ date</div>
         </div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn rounded-full btn-info text-white">
           <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
         </button>
       </li>
       
-      <li class="list-row">
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
         <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
         <div>
           <div>Tester001</div>
           <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการ Export Report แจ้งซ่อม ณ วันที่ date</div>
         </div>
-        <button class="btn btn-square btn-ghost">
+        <button class="btn rounded-full btn-info text-white">
           <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
         </button>
-      </li>  
+      </li>
+      
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
+        <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
+        <div>
+          <div>Tester001</div>
+          <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการ Export Report แจ้งซ่อม ณ วันที่ date</div>
+        </div>
+        <button class="btn rounded-full btn-info text-white">
+          <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+        </button>
+      </li>
+
+      <li class="list-row h-[100px] items-center hover:bg-base-200 transition cursor-pointer">
+        <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
+        <div>
+          <div>Tester001</div>
+          <div class="text-xs uppercase font-semibold opacity-60">ได้ทำการ Export Report แจ้งซ่อม ณ วันที่ date</div>
+        </div>
+        <button class="btn rounded-full btn-info text-white">
+          <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+        </button>
+      </li>
     </ul>
   </div>
 @endsection

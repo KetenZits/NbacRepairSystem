@@ -63,10 +63,10 @@
         </div>
         <div>
             <ul class="hidden lg:flex space-x-6 text-lg font-semibold">
-                <li><a href="#" class="hover:text-blue-500 transition">Home</a></li>
-                <li><a href="#" class="hover:text-blue-500 transition">Services</a></li>
-                <li><a href="#" class="hover:text-blue-500 transition">About Us</a></li>
-                <li><a href="#" class="hover:text-blue-500 transition">Contact</a></li>
+                <li><a href="/" class="hover:text-blue-500 transition">Home</a></li>
+                <li><a href="/service-form" class="hover:text-blue-500 transition">Services</a></li>
+                <li><a href="/about" class="hover:text-blue-500 transition">About Us</a></li>
+                <li><a href="/contact" class="hover:text-blue-500 transition">Contact</a></li>
             </ul>
             <div class="drawer lg:hidden">
                 <input id="my-drawer" type="checkbox" class="drawer-toggle" />
@@ -74,14 +74,14 @@
                   <!-- Page content here -->
                   <label for="my-drawer"><i class="fa-solid fa-bars text-2xl"></i></label>
                 </div>
-                <div class="drawer-side">
+                <div class="drawer-side z-50">
                   <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
                   <ul class="menu bg-base-200 text-2xl min-h-full w-80 p-4">
                     <!-- Sidebar content here -->
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/service-form">Services</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
                   </ul>
                 </div>
               </div>
