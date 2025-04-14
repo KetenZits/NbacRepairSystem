@@ -42,10 +42,7 @@
     {{-- <!-- Bootstrap JS (ต้องมีเพื่อให้ dropdown ทำงาน) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> --}}
 
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/font.css', 'resources/css/bootstrap.min.css', 'resources/css/font-awesome.min.css', 'resources/css/aos.css', 'resources/css/owl.carousel.min.css', 'resources/css/owl.theme.default.min.css', 'resources/css/templatemo-digital-trend.css'])
-    @vite(['resources/js/aos.js', 'resources/js/jquery.min.js', 'resources/js/bootstrap.min.js', 'resources/js/owl.carousel.min.js', 'resources/js/smoothscroll.js', 'resources/js/custom.js'])
-
-    <title>@yield('title')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js', ])
 
     <!-- เชื่อมโยง Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Raleway:500,700" rel="stylesheet">
@@ -73,7 +70,7 @@
             </div>
           
         </div>
-        <div class="drawer-side">
+        <div class="drawer-side z-10">
           <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
           <ul class="menu bg-blue-400 min-h-full w-80 p-4 text-white">
             <!-- Sidebar content here -->
@@ -150,5 +147,6 @@
           </div>
         </nav>
       </footer>
+      @stack('scripts')
 </body>
 </html>
