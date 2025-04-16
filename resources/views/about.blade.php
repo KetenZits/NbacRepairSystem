@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-Services Form
+About Us
 @endsection
 
 @section('content')
@@ -20,8 +20,8 @@ Services Form
                 alt="Ven" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title">นายศิริภูมิ เลาหจารุรัตน์</h2>
-              <p>Nickname : Ven <br> Get Contact Me Belowww!! </p>
+              <h2 class="card-title font-bold">นายศิริภูมิ เลาหจารุรัตน์</h2>
+              <p class="text-gray-700 font-semibold">Nickname : Ven <br> Get Contact Me Belowww!! </p>
               <div class="card-actions justify-end">
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-instagram text-2xl text-white"></i></button>
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-facebook text-2xl text-white"></i></button>
@@ -35,8 +35,8 @@ Services Form
                 alt="Mai" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title">นายธนนันธรณ์ ประดับธรรม</h2>
-              <p>Nickname : Tonmai <br> Get Contact Me Belowww!! </p>
+              <h2 class="card-title font-bold">นายธนนันธรณ์ ประดับธรรม</h2>
+              <p class="text-gray-700 font-semibold">Nickname : Tonmai <br> Get Contact Me Belowww!! </p>
               <div class="card-actions justify-end">
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-instagram text-2xl text-white"></i></button>
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-facebook text-2xl text-white"></i></button>
@@ -50,8 +50,8 @@ Services Form
                 alt="First" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title">นายธนพนธ์ แก้วคุ้มครอง</h2>
-              <p>Nickname : First <br> Get Contact Me Belowww!! </p>
+              <h2 class="card-title font-bold">นายธนพนธ์ แก้วคุ้มครอง</h2>
+              <p class="text-gray-700 font-semibold">Nickname : First <br> Get Contact Me Belowww!! </p>
               <div class="card-actions justify-end">
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-instagram text-2xl text-white"></i></button>
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-facebook text-2xl text-white"></i></button>
@@ -65,8 +65,8 @@ Services Form
                 alt="Ohm" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title">นายธีรภัทร์ สวยบำรุง</h2>
-              <p>Nickname : Ohm <br> Get Contact Me Belowww!! </p>
+              <h2 class="card-title font-bold">นายธีรภัทร์ สวยบำรุง</h2>
+              <p class="text-gray-700 font-semibold">Nickname : Ohm <br> Get Contact Me Belowww!! </p>
               <div class="card-actions justify-end">
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-instagram text-2xl text-white"></i></button>
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-facebook text-2xl text-white"></i></button>
@@ -80,8 +80,8 @@ Services Form
                 alt="Atit" />
             </figure>
             <div class="card-body">
-              <h2 class="card-title">นายอาทิตย์ ปืนกันภัย</h2>
-              <p>Nickname : Atit <br> Get Contact Me Belowww!! </p>
+              <h2 class="card-title font-bold">นายอาทิตย์ ปืนกันภัย</h2>
+              <p class="text-gray-700 font-semibold">Nickname : Atit <br> Get Contact Me Belowww!! </p>
               <div class="card-actions justify-end">
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-instagram text-2xl text-white"></i></button>
                 <button class="btn btn-info btn-square px-5 py-4"><i class="fa-brands fa-facebook text-2xl text-white"></i></button>

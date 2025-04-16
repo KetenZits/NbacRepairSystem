@@ -81,6 +81,10 @@
             <li><a class="text-xl">Services</a></li>
             <li><a class="text-xl">About Us</a></li>
             <li><a class="text-xl">Contact</a></li>
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button type="submit" class="btn btn-info text-white text-xl font-normal rounded-full">ออกจากระบบ</button>
+            </form>
             </div>
           </div>
           </ul>

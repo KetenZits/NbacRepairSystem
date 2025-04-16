@@ -2,7 +2,7 @@
 @section('title')
     Dashboard
 @endsection
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @section('content')
 <div class="container mx-auto px-5">
     <div class="navbar bg-base-100 shadow-md rounded-full text-blue-400">

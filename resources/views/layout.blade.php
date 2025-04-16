@@ -66,7 +66,6 @@
                 <li><a href="/" class="hover:text-blue-500 transition">Home</a></li>
                 <li><a href="/service-form" class="hover:text-blue-500 transition">Services</a></li>
                 <li><a href="/about" class="hover:text-blue-500 transition">About Us</a></li>
-                <li><a href="/contact" class="hover:text-blue-500 transition">Contact</a></li>
             </ul>
             <div class="drawer lg:hidden">
                 <input id="my-drawer" type="checkbox" class="drawer-toggle" />
@@ -81,7 +80,6 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/service-form">Services</a></li>
                     <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact</a></li>
                   </ul>
                 </div>
               </div>
