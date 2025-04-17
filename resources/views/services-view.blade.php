@@ -15,9 +15,12 @@ Services DMS
               <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>ชื่อผู้แจ้งซ่อม</th>
+                  <th>สิ่งที่ต้องซ่อม</th>
+                  <th>รายละเอียด</th>
+                  <th>สถานที่</th>
+                  <th>วันกำหนดส่งงาน</th>
+                  <th>วันส่งคำขอแจ้งซ่อม</th>
                 </tr>
               </thead>
               <tbody>
@@ -25,22 +28,8 @@ Services DMS
                 <tr>
                   <th>1</th>
                   <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
+                  <td>Quality</td>
                   <td>Blue</td>
-                </tr>
-                <!-- row 2 -->
-                <tr>
-                  <th>2</th>
-                  <td>Hart Hagerty</td>
-                  <td>Desktop Support Technician</td>
-                  <td>Purple</td>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                  <th>3</th>
-                  <td>Brice Swyre</td>
-                  <td>Tax Accountant</td>
-                  <td>Red</td>
                 </tr>
               </tbody>
             </table>

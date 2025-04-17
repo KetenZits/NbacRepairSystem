@@ -22,7 +22,7 @@ Lumos EXE
                     </fieldset>
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend">Password</legend>
-                        <input type="text" class="input w-full" placeholder="โปรดใส่ชื่อ" name="password"/>
+                        <input type="password" class="input w-full" placeholder="โปรดใส่ชื่อ" name="password"/>
                     </fieldset>
                     <div class="flex justify-center h-[75px] items-center">
                         <button type="submit" class="btn btn-info justify-center items-center mt-3 text-white">เข้าสู่ระบบ</button>

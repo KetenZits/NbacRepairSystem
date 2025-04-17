@@ -77,10 +77,9 @@
             <div>
             <div class="text-3xl">Dashboard <i class="fas fa-chart-line animate-bounce"></i></div>
             <div class="mt-5">
-            <li><a class="text-xl">Home</a></li>
-            <li><a class="text-xl">Services</a></li>
-            <li><a class="text-xl">About Us</a></li>
-            <li><a class="text-xl">Contact</a></li>
+            <li><a href="/" class="text-xl">Home</a></li>
+            <li><a href="/service-form" class="text-xl">Services</a></li>
+            <li><a href="/about" class="text-xl">About Us</a></li>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
               <button type="submit" class="btn btn-info text-white text-xl font-normal rounded-full">ออกจากระบบ</button>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/lumos', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
@@ -18,21 +19,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
     
-    Route::get('/service-view', function () {
-        return view('services-view');
-    });
-    Route::get('/service-edit', function () {
-        return view('service-edit');
-    });
+    Route::get('/service-view', [ServiceController ::class, 'showServiceView'])->name('service-view');
+    Route::get('/service-edit', [ServiceController ::class, 'showServiceEdit'])->name('service-edit');
 });
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/service-form', function () {
-    return view('service-form');
-});
 
 Route::get('/about', function () {
     return view('about');
 });
+
+Route::get('/service-form', [ServiceController ::class, 'showServiceForm'])->name('service-form');
+Route::post('/service-store', [ServiceController::class, 'servicestore'])->name('service-store');
+
