@@ -2,7 +2,27 @@
 @section('title')
 Services Form
 @endsection
-
+{{-- datepicker --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{{-- datepicker --}}
+<style>
+/*datepicker*/
+.flatpickr-calendar {
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-family: 'Prompt', sans-serif;
+}
+.flatpickr-day:hover {
+  background-color: #0084ff;
+  color: white;
+}
+/* วันที่ถูกเลือก */
+.flatpickr-day.selected {
+  background-color: #007BFF;
+  color: white;
+}
+/*datepicker*/
+</style>
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <form method="POST" action="{{ route('service-store') }}">
@@ -37,13 +57,44 @@ Services Form
         </fieldset>
         <fieldset class="fieldset">
             <legend class="fieldset-legend">วันกำหนดส่งงาน</legend>
-            <input type="text" class="input w-full" placeholder="เลือกวันกำหนดส่งงาน" name="date"/>
+            <input type="text" id="datepicker" placeholder="เลือกวันที่" class="input w-full" name="date"/>
+            {{-- <input type="date" class="input w-full" name="date"/> --}}
             @error('date')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </fieldset>
         <input type="submit" class="btn btn-info justify-center items-center mt-3 text-white" value="บันทึกข้อมูล"/>
     </form>
+    {{-- ตัวแจ้งเตือนหากบันทึกข้อมูลสำเร็จ --}}
+    @if(session('success'))
+  <dialog id="success_modal" class="modal">
+    <div class="modal-box border-l-4 border-green-500">
+      <h3 class="font-bold text-lg text-green-600">ส่งคำขอสำเร็จ!</h3>
+      <p class="py-2">{{ session('success') }}</p>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn btn-success">ตกลง</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('success_modal');
+      if(modal) modal.showModal();
+    });
+  </script>
+@endif
+{{-- ตัวแจ้งเตือนหากบันทึกข้อมูลสำเร็จ --}}
 </div>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@measured/puck@latest/dist/puck.min.js"></script>
+{{-- datepicker --}}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{{-- datepicker --}}
+<script>
+    //date picker
+    flatpickr("#datepicker", {
+      dateFormat: "Y-m-d", // รูปแบบวันที่ เช่น 2025-04-18
+    });
+    //date picker
+</script>
 @endsection

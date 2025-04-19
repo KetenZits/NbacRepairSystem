@@ -16,4 +16,6 @@ class ServiceUser extends Model
         'location',
         'date',
     ];
+
+    public $timestamps = true; //create_at, update_at
 }

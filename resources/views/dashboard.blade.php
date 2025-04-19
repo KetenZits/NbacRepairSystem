@@ -62,7 +62,7 @@
               d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
           </svg>
         </div>
-        <div class="stat-title text-2xl">การซ่อมรายวัน</div>
+        <div class="stat-title text-2xl">ส่งคำขอการซ่อมรายวัน</div>
         <div class="stat-value text-primary">999</div>
         <div class="stat-desc text-primary">21% more than last month</div>
       </div>
@@ -81,7 +81,7 @@
               d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
         </div>
-        <div class="stat-title text-2xl">การซ่อมรายเดือน</div>
+        <div class="stat-title text-2xl">ส่งคำขอการซ่อมรายเดือน</div>
         <div class="stat-value text-secondary">999</div>
         <div class="stat-desc text-secondary">21% more than last month</div>
       </div>
@@ -100,7 +100,7 @@
               d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
         </div>
-        <div class="stat-title text-2xl">การซ่อมรายปี</div>
+        <div class="stat-title text-2xl">ส่งคำขอการซ่อมรายปี</div>
         <div class="stat-value text-info">999</div>
         <div class="stat-desc text-info">31 tasks remaining</div>
       </div>
