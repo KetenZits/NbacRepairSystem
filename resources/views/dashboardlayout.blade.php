@@ -50,6 +50,15 @@
         body{
             font-family: "Noto Sans Thai", sans-serif;
         }
+        .service-dropdown {
+            display: none;
+        }
+        .service-drop:hover ~ .service-dropdown{
+            display: block;
+        }
+        .service-dropdown:hover {
+          display: block;
+        }
     </style>
 </head>
 <body>
@@ -77,12 +86,18 @@
             <div>
             <div class="text-3xl">Dashboard <i class="fas fa-chart-line animate-bounce"></i></div>
             <div class="mt-5">
-            <li><a href="/" class="text-xl">Home</a></li>
-            <li><a href="/service-form" class="text-xl">Services</a></li>
-            <li><a href="/about" class="text-xl">About Us</a></li>
-            <form method="POST" action="{{ route('logout') }}">
+            <li><a href="/" class="text-xl" target="_blank">Home</a></li>
+            <li>
+              <li class="text-xl service-drop"><a href="#">Service <i class="fa-solid fa-caret-down"></i></a></li>
+              <li class="service-dropdown text-xl ml-5">
+                <a href="/service-form" class="text-xl" target="_blank">Service Form</a>
+                <a href="/service-view" class="text-xl" target="_blank">Service View</a>
+              </li>
+            </li>
+            <li><a href="/about" class="text-xl" target="_blank">About Us</a></li>
+            <form method="POST" action="{{ route('logout') }}" class="mt-5">
               @csrf
-              <button type="submit" class="btn btn-info text-white text-xl font-normal rounded-full">ออกจากระบบ</button>
+              <button type="submit" class="btn btn-info text-white text-xl font-normal rounded-full">Log out</button>
             </form>
             </div>
           </div>

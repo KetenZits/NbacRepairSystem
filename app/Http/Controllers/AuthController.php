@@ -28,7 +28,7 @@ class AuthController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        return redirect()->route('lumos')->withErrors([
+        return redirect()->route('verifyfail')->withErrors([
             'name' => 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
         ]);
     }
@@ -40,6 +40,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/lumos');
+        return redirect('/');
     }
 }

@@ -110,7 +110,7 @@
             <br />© Nakprasith Business Administration Technological College.
             Main Site at NBAC
             <br />
-            Develop & Design Website : Thanapon
+            Develop & Design Website : <a href="https://www.instagram.com/karasumi_zz/?__pwa=1">Thanapon</a>
           </p>
         </aside>
         <nav>

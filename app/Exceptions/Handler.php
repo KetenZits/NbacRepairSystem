@@ -39,6 +39,6 @@ class Handler extends ExceptionHandler
             return response()->json(['message' => $exception->getMessage()], 401);
         }
 
-        return redirect()->route('loginfail'); // แก้ตรงนี้ตาม route ที่คุณต้องการ
+        return redirect()->route('verifyfail'); // แก้ตรงนี้ตาม route ที่คุณต้องการ
     }
 }

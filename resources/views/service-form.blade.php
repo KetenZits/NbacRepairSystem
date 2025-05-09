@@ -25,6 +25,9 @@ Services Form
 </style>
 @section('content')
 <div class="container mx-auto px-4 py-8">
+  <div>
+    <h1 class="text-center text-5xl font-bold text-blue-400 my-10">Services Form</h1>
+</div>
     <form method="POST" action="{{ route('service-store') }}">
         @csrf
         <fieldset class="fieldset">

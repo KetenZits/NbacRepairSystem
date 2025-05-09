@@ -1,12 +1,12 @@
 @extends('layout')
 @section('title')
-Lumos EXE
+Magic city Gateway
 @endsection
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
         <div>
-            <h1 class="text-center text-5xl font-bold text-blue-400 my-10">Lumos login</h1>
+            <h1 class="text-center text-5xl font-bold text-blue-400 my-10">Hogwarts Gate login</h1>
         </div>
         <div class="flex flex-col justify-center items-center mt-10 h-[60vh]">
             @if ($errors->any())

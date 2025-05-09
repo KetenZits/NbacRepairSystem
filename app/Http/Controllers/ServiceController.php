@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ServiceUser;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -26,13 +27,14 @@ class ServiceController extends Controller
 
     public function showServiceView(){
 
-        $serviceusers = DB::table('serviceuser')->get();
+        $serviceusers = DB::table('serviceuser')->orderBy('created_at', 'desc')->get();
         // dd($serviceusers);
         return view('services-view',compact('serviceusers'));
     }
 
-    public function showServiceEdit(){
-        return view('service-edit');
+    public function showServiceEdit($id){
+        $user = ServiceUser::findOrFail($id);
+        return view('service-edit',compact('user'));
     }
 
     public function servicestore(Request $request){
@@ -64,20 +66,50 @@ class ServiceController extends Controller
         ]);
         // You can use a model to save the data to the database
 
+        Notification::create([
+            'message' => "{$request->name} ได้ทำการแจ้งซ่อม {$request->itemrepair}",
+        ]);
+
         return redirect()->route('service-form')->with('success', 'Sent form successfully.');
     }
 
-    public function serviceupdate(Request $request){
+    public function serviceupdate(Request $request, $id){
         // Validate the request data
         $request->validate([
-            'service_name' => 'required|string|max:255',
-            'service_description' => 'required|string',
-            'service_price' => 'required|numeric',
+            'name' => 'required|string|max:255',
+            'itemrepair' => 'required',
+            'detailrepair' => 'required',
+            'location' => 'required',
+            'date' => 'required|date',
             // Add more validation rules as needed
-        ]);
+        ],
+        [
+            'name.required' => 'กรุณาใส่ชื่อผู้แจ้งซ่อม',
+            'itemrepair.required' => 'กรุณาใส่ชื่อสิ่งที่ต้องการซ่อม',
+            'detailrepair.required' => 'กรุณาใส่รายละเอียดการพัง',
+            'location.required' => 'กรุณาแจ้งสถานที่',
+            'date.required' => 'กรุณาแจ้งวันส่งงาน',
+        ]
+        );
 
-        // Update the service data in the database
-        // You can use a model to update the data in the database
+
+        $user = ServiceUser::findorFail($id);
+        // Check if the user exists
+        if (!$user) {
+            return redirect()->route('service-view')->with('error', 'Service not found.');
+        }
+        // Update the user data
+        $data = [
+            'name' => $request->name,
+            'itemrepair' => $request->itemrepair,
+            'detailrepair' => $request->detailrepair,
+            'location' => $request->location,
+            'date' => $request->date,
+        ];
+        // Update the user in the database
+
+        $user->update($data);
+
 
         return redirect()->route('service-view')->with('success', 'Service updated successfully.');
     }

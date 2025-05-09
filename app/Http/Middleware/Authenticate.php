@@ -9,12 +9,10 @@ class Authenticate extends Middleware
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      */
-    protected function redirectTo($request): ?string
-    {
-        if (! $request->expectsJson()) {
-            return route('loginfail'); // เปลี่ยน route ตรงนี้ตามที่คุณต้องการ
-        }
-
-        return null;
+    protected function redirectTo($request){
+    if (! $request->expectsJson()) {
+        return '/verifyfail'; // หรือจะเป็น '/info' หรือหน้าอะไรก็ได้ที่คุณต้องการ
     }
+    return null; // ถ้าไม่ต้องการ redirect ให้คืนค่า null
+}
 }

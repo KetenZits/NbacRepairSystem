@@ -17,22 +17,13 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        // ตรวจสอบว่าผู้ใช้ยังไม่ได้ login
         if (!Auth::check()) {
-            // ส่ง error message เข้า view โดยตรง
-            return response()->view('loginfail', [
-                'error_message' => 'กรุณาเข้าสู่ระบบก่อนเข้าใช้งาน'
-            ]);
+            // ถ้าผู้ใช้ไม่ได้ล็อกอิน แสดงหน้าไม่อนุญาตให้เข้า
+            return response()->view('verifyfail');
         }
-    
-        if (!Auth::user()->is_admin) {
-            return response()->view('loginfail', [
-                'error_message' => 'คุณไม่มีสิทธิ์เข้าถึงหน้านี้'
-            ]);
-        }
-    
+
         return $next($request);
     }
 }
