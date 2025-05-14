@@ -2,11 +2,13 @@
 @section('title')
 Magic city Gateway
 @endsection
-
+{{-- aos --}}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{{-- aos --}}
 @section('content')
     <div class="container mx-auto px-4 py-8">
         <div>
-            <h1 class="text-center text-5xl font-bold text-blue-400 my-10">Hogwarts Gate login</h1>
+            <h1 class="text-center text-5xl font-bold text-blue-400 my-10 animate-bounce" data-aos="fade-down">Hogwarts Gate login</h1>
         </div>
         <div class="flex flex-col justify-center items-center mt-10 h-[60vh]">
             @if ($errors->any())
@@ -31,4 +33,9 @@ Magic city Gateway
             </div>
         </div>
     </div>
+    <!-- Import aos JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 @endsection

@@ -2,6 +2,9 @@
 @section('title')
 Services Form
 @endsection
+{{-- aos --}}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{{-- aos --}}
 {{-- datepicker --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 {{-- datepicker --}}
@@ -26,11 +29,11 @@ Services Form
 @section('content')
 <div class="container mx-auto px-4 py-8">
   <div>
-    <h1 class="text-center text-5xl font-bold text-blue-400 my-10">Services Form</h1>
+    <h1 class="text-center text-5xl font-bold text-blue-400 my-10" data-aos="fade-down" data-aos-duration="1000">Services Form</h1>
 </div>
     <form method="POST" action="{{ route('service-store') }}">
         @csrf
-        <fieldset class="fieldset">
+        <fieldset class="fieldset" >
             <legend class="fieldset-legend">ชื่อ</legend>
             <input type="text" class="input w-full" placeholder="โปรดใส่ชื่อ" name="name"/>
             @error('name')
@@ -90,10 +93,13 @@ Services Form
 @endif
 {{-- ตัวแจ้งเตือนหากบันทึกข้อมูลสำเร็จ --}}
 </div>
+<!-- Import aos JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 {{-- datepicker --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 {{-- datepicker --}}
 <script>
+  AOS.init();
     //date picker
     flatpickr("#datepicker", {
       dateFormat: "Y-m-d", // รูปแบบวันที่ เช่น 2025-04-18

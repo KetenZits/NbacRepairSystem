@@ -2,6 +2,9 @@
 @section('title')
     Dashboard
 @endsection
+{{-- aos --}}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{{-- aos --}}
 {{-- calendar link --}}
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
 {{-- calendar link --}}
@@ -151,6 +154,8 @@
   </div>
   @endsection
   @push('scripts')
+<!-- Import aos JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <!-- Import FullCalendar JS -->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 <!-- Import Thai locale if needed -->

@@ -2,18 +2,20 @@
 @section('title')
 About Us
 @endsection
-
+{{-- aos --}}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{{-- aos --}}
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <div>
-        <h1 class="text-center text-5xl font-bold text-blue-400 my-10">About US</h1>
+        <h1 class="text-center text-5xl font-bold text-blue-400 my-10" data-aos="fade-down" data-aos-duration="1000">About US</h1>
     </div>
-    <li class="text-left font-semibold text-gray-700 lg:text-4xl mt-10 list-none underline">Hellooo!!</li>
-    <p class="text-left font-semibold text-gray-500 lg:text-2xl mt-5 ml-13">🚨 อาโหลลลสวัสดีจ้าา พวกเราคือ <span class="text-gray-700 font-bold">Dek Training 2024</span> หรือก็คือ IT Support นั่นเอง โดยปกติแล้วเนี่ยพวกเราก็ทำเกี่ยวกับการซ่อมคอม 
+    <li class="text-left font-semibold text-gray-700 lg:text-4xl mt-10 list-none underline" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">Hellooo!!</li>
+    <p class="text-left font-semibold text-gray-500 lg:text-2xl mt-5 ml-13" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="600">🚨 อาโหลลลสวัสดีจ้าา พวกเราคือ <span class="text-gray-700 font-bold">Dek Training 2024</span> หรือก็คือ IT Support นั่นเอง โดยปกติแล้วเนี่ยพวกเราก็ทำเกี่ยวกับการซ่อมคอม 
     ลงโปรแกรม ดูแลรักษาคอมพิวเตอร์หรือแก้ไขปัญหาอุปกรณ์อิเล็กทรอนิกส์ต่างๆภายใน วิทยาลัยเทคโนโลยีนาคประสิทธิ์บริหารธุรกิจ ให้พร้อมใช้งานอยู่เสมอ โดยส่วนใหญ่แล้วเราจะทำงานกันหลายคนโดยมีทั้งหมด 5 คนประมานนี้เลยยย</p>
     <div class="flex flex-row flex-wrap justify-center items-center mt-10 gap-10">
 
-        <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]">
+        <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
             <figure>
               <img
                 src="/picture/cardpicture/Ven.jpg"
@@ -28,7 +30,7 @@ About Us
               </div>
             </div>
           </div>
-          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]">
+          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
             <figure>
               <img
                 src="/picture/cardpicture/tonmai.jpg"
@@ -43,10 +45,10 @@ About Us
               </div>
             </div>
           </div>
-          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]">
+          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
             <figure>
               <img
-                src="/picture/cardpicture/first.jpg"
+                src="/picture/cardpicture/first2.jpg"
                 alt="First" />
             </figure>
             <div class="card-body">
@@ -58,7 +60,7 @@ About Us
               </div>
             </div>
           </div>
-          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]">
+          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
             <figure>
               <img
                 src="/picture/cardpicture/ohm.jpg"
@@ -73,7 +75,7 @@ About Us
               </div>
             </div>
           </div>
-          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]">
+          <div class="card card-side bg-base-100 shadow-md h-[250px] w-[650px] lg:h-[350px]" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
             <figure>
               <img
                 src="/picture/cardpicture/atit.jpg"
@@ -90,4 +92,9 @@ About Us
           </div>
     </div>
 </div>
+    <!-- Import aos JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 @endsection

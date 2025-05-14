@@ -40,7 +40,7 @@ class ServiceController extends Controller
     public function servicestore(Request $request){
         // Validate the request data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string',
             'itemrepair' => 'required',
             'detailrepair' => 'required',
             'location' => 'required',
@@ -76,7 +76,7 @@ class ServiceController extends Controller
     public function serviceupdate(Request $request, $id){
         // Validate the request data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string',
             'itemrepair' => 'required',
             'detailrepair' => 'required',
             'location' => 'required',
