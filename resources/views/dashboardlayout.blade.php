@@ -53,6 +53,12 @@
         .service-dropdown {
             display: none;
         }
+        .service-drop:active ~ .service-dropdown{
+            display: block;
+        }
+        .service-dropdown:active {
+          display: block;
+        }
         .service-drop:hover ~ .service-dropdown{
             display: block;
         }
