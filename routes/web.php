@@ -27,12 +27,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/notification/read', [DashboardController::class, 'markAsRead'])->name('notification.read');
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/mark-all-read', [NotificationController::class, 'markAllRead'])->name('mark-all-read');
 
     Route::get('/events', [DashboardController::class, 'getEvents']);
     Route::get('/booking-chart-data', [DashboardController::class, 'bookingData']);
 
     Route::get('/service-view', [ServiceController::class, 'showServiceView'])->name('service-view');
     Route::get('/service-edit/{id}', [ServiceController::class, 'showServiceEdit'])->name('service-edit');
+    Route::get('/service-destroy/{id}', [ServiceController::class, 'servicedestroy'])->name('service-destroy');
     Route::post('/service-update/{id}', [ServiceController::class, 'serviceupdate'])->name('service-update');
 });
 

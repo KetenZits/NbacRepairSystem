@@ -27,4 +27,11 @@ class NotificationController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function markAllRead(){
+    // อัพเดตคอลัมน์ 'is_read' ให้เป็น true สำหรับทุกแถว
+    Notification::where('is_read', false)->update(['is_read' => true]);
+
+    // ส่งกลับไปยังหน้าที่แสดงผล
+    return redirect()->back()->with('success', 'All notifications marked as read.');
+    }
 }

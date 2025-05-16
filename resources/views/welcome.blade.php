@@ -26,6 +26,7 @@
         <div class="text-5xl sm:text-6xl lg:text-8xl text-center font-bold" data-aos="fade-up" data-aos-duration="1000">NBACREPAIR</div>
         <div class="text-4xl sm:text-5xl lg:text-7xl text-center m-5 font-semibold" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">SYSTEM</div>
         <div class="text-2xl sm:text-3xl lg:text-4xl text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">ระบบแจ้งซ่อมเครื่องคอมพิวเตอร์</div>
+        <a href="/service-form" class="btn btn-info text-white m-10 animate-bounce" data-aos="zoom-in" data-aos-delay="900" data-aos-duration="1000">กรอกฟอร์มแจ้งซ่อมกดเลย!</a>
     </div>
     <div class="container mx-auto px-5 my-20">
         <div class="text-center font-semibold text-gray-700 text-5xl lg:text-7xl" data-aos="fade-down" data-aos-duration="1000">NBACREPAIR SYSTEM</div>

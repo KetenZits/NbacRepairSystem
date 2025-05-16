@@ -44,7 +44,7 @@ class ServiceController extends Controller
             'itemrepair' => 'required',
             'detailrepair' => 'required',
             'location' => 'required',
-            'date' => 'required|date',
+            'date' => 'required|date|after_or_equal:today',
             // Add more validation rules as needed
         ],
         [
@@ -53,6 +53,7 @@ class ServiceController extends Controller
             'detailrepair.required' => 'กรุณาใส่รายละเอียดการพัง',
             'location.required' => 'กรุณาแจ้งสถานที่',
             'date.required' => 'กรุณาแจ้งวันส่งงาน',
+            'date.after_or_equal' => 'โปรดตรวจเช็ควันที่ในฟอร์ม'
         ]
     );
 
@@ -80,7 +81,7 @@ class ServiceController extends Controller
             'itemrepair' => 'required',
             'detailrepair' => 'required',
             'location' => 'required',
-            'date' => 'required|date',
+            'date' => 'required|date|after_or_equal:today',
             // Add more validation rules as needed
         ],
         [
@@ -89,6 +90,7 @@ class ServiceController extends Controller
             'detailrepair.required' => 'กรุณาใส่รายละเอียดการพัง',
             'location.required' => 'กรุณาแจ้งสถานที่',
             'date.required' => 'กรุณาแจ้งวันส่งงาน',
+            'date.after_or_equal' => 'โปรดตรวจเช็ควันที่ในฟอร์ม'
         ]
         );
 
@@ -112,6 +114,19 @@ class ServiceController extends Controller
 
 
         return redirect()->route('service-view')->with('success', 'Service updated successfully.');
+    }
+
+    public function servicedestroy($id){
+
+        $serviceuser = ServiceUser::find($id);
+
+        if ($serviceuser) {
+
+            $serviceuser->delete();
+
+            return redirect()->route('service-view')->with('success', 'Service delete successfully.');
+        }
+    return redirect()->route('service-view')->with('error', 'Cant find data to delete.');
     }
 
 }

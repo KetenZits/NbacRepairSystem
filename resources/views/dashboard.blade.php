@@ -58,6 +58,12 @@
         @endforeach
           </ul>
           @endif
+          <div>
+            <form action="{{ route('mark-all-read') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-info text-white">Read All</button>
+            </form>
+          </div>
         </div>
       </dialog>
 
