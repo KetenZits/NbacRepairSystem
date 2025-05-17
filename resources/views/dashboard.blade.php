@@ -38,9 +38,9 @@
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
           <h3 class="text-lg font-bold">Notification Box!</h3>
-          @if(isset($notifications))
+          @if(isset($notifications1))
           <ul class="mt-5">
-            @foreach ($notifications as $notification)
+            @foreach ($notifications1 as $notification)
             <form action="{{ route('notifications.read', $notification->id) }}" method="POST">
                 @csrf
                 <button type="submit" class="w-full text-left">
@@ -134,9 +134,9 @@
 
     <ul class="list bg-base-100 rounded-box shadow-md w-full"> 
       <li class="list-row tracking-wide">Notification Task</li>
-      <div class="relative top-2.5">
-        @forEach($notifications as $notification)
-      <li class="list-row h-[110px] items-center hover:bg-base-200 transition cursor-pointer">
+      <div class="">
+        @forEach($notifications2 as $notification)
+      <li class="list-row items-center hover:bg-base-200 transition cursor-pointer">
         <div><i class="fas fa-tools text-info text-3xl"></i></div>
         <div>
           {{ $notification->message }}
@@ -153,7 +153,7 @@
     <ul class="list bg-base-100 rounded-box shadow-md w-full"> 
       <li class="list-row tracking-wide">Calendar Date</li>
       <li class="list-row h-full items-center hover:bg-base-200 transition cursor-pointer flex justify-center">
-        <div id='calendar' class="max-h-[500px] overflow-auto"></div>
+        <div id='calendar' class="max-h-[650px] overflow-auto"></div>
       </li>
     </ul>
 
@@ -404,6 +404,7 @@
       },
       events: '/events',
       dayMaxEvents: true,
+      dayMaxEvents: 2,
       height: 'auto'
     });
     

@@ -17,7 +17,8 @@ class DashboardController extends Controller
 {
     $user = Auth::user();
     
-    $notifications = Notification::latest()->take(5)->get();
+    $notifications1 = Notification::latest()->take(5)->get();
+    $notifications2 = Notification::latest()->take(9)->get();
     $unreadCount = Notification::where('is_read', false)->count();
     
     $weekcount = ServiceUser::whereBetween('created_at', [
@@ -40,7 +41,7 @@ class DashboardController extends Controller
         return view('dashboard', compact('error_message', 'notifications', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount'));
     }
 
-    return view('dashboard', compact('notifications', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount'));
+    return view('dashboard', compact('notifications1', 'notifications2', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount'));
 }
 
     public function serviceView()
