@@ -40,7 +40,7 @@ class ServiceController extends Controller
     public function servicestore(Request $request){
         // Validate the request data
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|regex:/^[a-zA-Z0-9]+$/',
             'itemrepair' => 'required',
             'detailrepair' => 'required',
             'location' => 'required',
@@ -53,7 +53,8 @@ class ServiceController extends Controller
             'detailrepair.required' => 'กรุณาใส่รายละเอียดการพัง',
             'location.required' => 'กรุณาแจ้งสถานที่',
             'date.required' => 'กรุณาแจ้งวันส่งงาน',
-            'date.after_or_equal' => 'โปรดตรวจเช็ควันที่ในฟอร์ม'
+            'date.after_or_equal' => 'โปรดตรวจเช็ควันที่ในฟอร์ม',
+            'name.regex' => 'โปรดตรวจสอบชื่อของคุณว่ามีอักษรพิเศษหรือไม่'
         ]
     );
 
@@ -77,7 +78,7 @@ class ServiceController extends Controller
     public function serviceupdate(Request $request, $id){
         // Validate the request data
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|regex:/^[a-zA-Z0-9]+$/',
             'itemrepair' => 'required',
             'detailrepair' => 'required',
             'location' => 'required',
@@ -90,7 +91,8 @@ class ServiceController extends Controller
             'detailrepair.required' => 'กรุณาใส่รายละเอียดการพัง',
             'location.required' => 'กรุณาแจ้งสถานที่',
             'date.required' => 'กรุณาแจ้งวันส่งงาน',
-            'date.after_or_equal' => 'โปรดตรวจเช็ควันที่ในฟอร์ม'
+            'date.after_or_equal' => 'โปรดตรวจเช็ควันที่ในฟอร์ม',
+            'name.regex' => 'โปรดตรวจสอบชื่อของคุณว่ามีอักษรพิเศษหรือไม่'
         ]
         );
 

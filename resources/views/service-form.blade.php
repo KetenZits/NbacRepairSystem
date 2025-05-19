@@ -35,35 +35,35 @@ Services Form
         @csrf
         <fieldset class="fieldset" >
             <legend class="fieldset-legend">ชื่อ</legend>
-            <input type="text" class="input w-full" placeholder="โปรดใส่ชื่อ" name="name"/>
+            <input type="text" class="input w-full" placeholder="โปรดใส่ชื่อ" name="name" value="{{ old('name') }}"/>
             @error('name')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </fieldset>
         <fieldset class="fieldset">
             <legend class="fieldset-legend">สิ่งที่ต้องการจะซ่อม</legend>
-            <input type="text" class="input w-full" placeholder="ชื่อสิ่งของ" name="itemrepair"/>
+            <input type="text" class="input w-full" placeholder="ชื่อสิ่งของ" name="itemrepair" value="{{ old('itemrepair') }}"/>
             @error('itemrepair')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </fieldset>
         <fieldset class="fieldset">
             <legend class="fieldset-legend">รายละเอียดการพัง</legend>
-            <textarea class="textarea w-full h-[350px]" placeholder="เช่น จอไม่ติด เปิดไม่ติด" name="detailrepair"></textarea>
+            <textarea class="textarea w-full h-[350px]" placeholder="เช่น จอไม่ติด เปิดไม่ติด" name="detailrepair">{{ old('detailrepair') }}</textarea>
             @error('detailrepair')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </fieldset>
         <fieldset class="fieldset">
             <legend class="fieldset-legend">สถานที่</legend>
-            <input type="text" class="input w-full" placeholder="เช่น ห้องคอม 2" name="location"/>
+            <input type="text" class="input w-full" placeholder="เช่น ห้องคอม 2" name="location" value="{{ old('location') }}"/>
             @error('location')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </fieldset>
         <fieldset class="fieldset">
             <legend class="fieldset-legend">วันกำหนดส่งงาน</legend>
-            <input type="text" id="datepicker" placeholder="เลือกวันที่" class="input w-full" name="date"/>
+            <input type="text" id="datepicker" placeholder="เลือกวันที่" class="input w-full" name="date" value="{{ old('date') }}"/>
             {{-- <input type="date" class="input w-full" name="date"/> --}}
             @error('date')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>

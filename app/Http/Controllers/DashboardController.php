@@ -88,17 +88,23 @@ class DashboardController extends Controller
     return response()->json($events);
     }
 
-    public function bookingData()
-{
+public function bookingData(){
+     
+    $startOfWeek = now()->startOfWeek();   
+    $endOfWeek = now()->endOfWeek();      
+
     $weekly = ServiceUser::selectRaw('DAYOFWEEK(created_at) as day, count(*) as total')
-        ->groupBy('day')->orderBy('day')->get();
+        ->whereBetween('created_at', [$startOfWeek, $endOfWeek])   
+        ->groupBy('day')
+        ->orderBy('day')
+        ->get();
 
     $monthly = ServiceUser::selectRaw('MONTH(created_at) as month, count(*) as total')
-        ->groupBy('month')->orderBy('month')->get();
+            ->groupBy('month')->orderBy('month')->get();
 
-    return response()->json([
-        'weekly' => $weekly,
-        'monthly' => $monthly
-    ]);
-}
+        return response()->json([
+            'weekly' => $weekly,
+            'monthly' => $monthly
+        ]);
+    }
 }
