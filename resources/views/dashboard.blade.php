@@ -69,12 +69,12 @@
 
       <div class="flex flex-col items-center justify-between my-10 lg:flex-col lg:flex-wrap lg:justify-around">
       <div class="flex">
-        <div class="w-85 xl:w-225 2xl:w-285 md:w-150 sm:w-120 bg-slate-600 shadow-md rounded-2xl my-2">
+        <div class="w-95 xl:w-225 2xl:w-285 md:w-150 sm:w-135 bg-slate-600 shadow-md rounded-2xl my-2">
             <canvas id="myChart1" class="px-3 py-5"></canvas>
         </div>
       </div>
       <div class="flex">
-        <div class="w-85 xl:w-225 2xl:w-285 md:w-150 sm:w-120 bg-slate-600 shadow-md rounded-2xl my-2">
+        <div class="w-95 xl:w-225 2xl:w-285 md:w-150 sm:w-135 bg-slate-600 shadow-md rounded-2xl my-2">
             <canvas id="myChart2" class="px-3 py-5"></canvas>
         </div>
       </div>
