@@ -53,6 +53,16 @@
         body{
             font-family: "Noto Sans Thai", sans-serif;
         }
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+        .gradient-border {
+            background: linear-gradient(90deg, #6b7280, #9ca3af, #6b7280);
+            height: 1px;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +76,9 @@
                 <li><a href="/" class="hover:text-blue-500 transition">Home</a></li>
                 <li><a href="/service-form" class="hover:text-blue-500 transition">Services</a></li>
                 <li><a href="/about" class="hover:text-blue-500 transition">About Us</a></li>
+                @auth
+                    <li><a href="/dashboard" class="hover:text-blue-500 transition">dashboard</a></li>
+                @endauth
             </ul>
             <div class="drawer lg:hidden">
                 <input id="my-drawer" type="checkbox" class="drawer-toggle" />
@@ -80,6 +93,9 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/service-form">Services</a></li>
                     <li><a href="/about">About Us</a></li>
+                    @auth
+                        <li><a href="/dashboard">Dashboard</a></li>
+                    @endauth
                   </ul>
                 </div>
               </div>
@@ -92,30 +108,72 @@
     <div class="">
         @yield('content')
     </div>
-    <footer class="footer sm:footer-horizontal bg-gray-700 text-neutral-content p-10 shadow-2xl">
-        <aside class="space-y-10">
-          <svg
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            class="fill-current">
-            <path
-              d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
-          </svg>
-          <p className="font-semibold">
-            © Nakprasith School Wat Bangchangnua Foundation
-            <br />© Nakprasith Business Administration Technological College.
-            Main Site at NBAC
-            <br />
-            Develop & Design Website : <a href="https://www.instagram.com/karasumi_zz/?__pwa=1" class="hover:text-blue-400 transition">Thanapon Khawkumkrong</a>
-          </p>
-        </aside>
-        <nav>
-          
-        </nav>
-      </footer>
+    <footer class="bg-gray-800 text-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Logo Section -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <i class="fas fa-tools text-2xl text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold">ระบบแจ้งซ่อม</h3>
+                            <p class="text-gray-400 text-sm">Repair Request System</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization Info -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-white">สถาบันการศึกษา</h4>
+                    <div class="text-sm text-gray-300 space-y-2">
+                        <p class="flex items-center">
+                            <i class="fas fa-graduation-cap mr-2 text-blue-400"></i>
+                            โรงเรียนนาคประสิทธิ์ วัดบางช้างเหนือ
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-university mr-2 text-blue-400"></i>
+                            วิทยาลัยเทคโนโลยีบริหารธุรกิจนาคประสิทธิ์
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact & Developer -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-white">ติดต่อเรา</h4>
+                    <div class="text-sm text-gray-300 space-y-2">
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-400"></i>
+                            support@nbac.ac.th
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-blue-400"></i>
+                            02-xxx-xxxx
+                        </p>
+                    </div>
+                    
+                    <!-- Developer Credit -->
+                    <div class="mt-6 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400 mb-1">Develop & Design By :</p>
+                        <a href="https://www.instagram.com/karasumi_zz/?__pwa=1" 
+                           class="inline-flex items-center space-x-2 text-sm text-gray-300 hover:text-white hover-lift group">
+                            <i class="fab fa-instagram text-pink-400 group-hover:text-pink-300"></i>
+                            <span>Thanapon Khawkumkrong</span>
+                            <i class="fas fa-external-link-alt text-xs opacity-60 group-hover:opacity-100"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="mt-8 pt-6 border-t border-gray-700">
+                <div class="flex flex-col md:flex-row justify-center items-center text-sm text-gray-400">
+                    <p>© 2024 Nakprasith School Wat Bangchangnua Foundation & NBAC</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
