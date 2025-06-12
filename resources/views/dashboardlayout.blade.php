@@ -6,140 +6,367 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
-
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
-        rel="stylesheet"> --}}
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/64cb7c5dd2.js" crossorigin="anonymous"></script>
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
-
-    <!-- ปิดการใช้ -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"
-        integrity="sha384-eSN5fwXlAgRA5aw9kZl2Rv8zbiLLbRC9Bj5nlyBLlh5rJlP+ql48f5+7N6N6jIeHz" crossorigin="anonymous">
-    </script> -->
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- AOS CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-
-    <!-- ปิดการใช้งาน -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    {{-- <!-- Bootstrap JS (ต้องมีเพื่อให้ dropdown ทำงาน) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    @vite(['resources/css/app.css', 'resources/js/app.js', ])
-
-    <!-- เชื่อมโยง Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Raleway:500,700" rel="stylesheet">
     <style>
-        body{
-            font-family: "Noto Sans Thai", sans-serif;
+        body {
+            font-family: "Inter", "Noto Sans Thai", sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
+        
+        .drawer-content {
+            min-height: 100vh;
+        }
+        
+        .drawer-side {
+            z-index: 1000;
+        }
+        
+        .drawer-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .sidebar-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
         .service-dropdown {
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
         }
-        .service-drop:active ~ .service-dropdown{
-            display: block;
+        
+        .service-dropdown.active {
+            max-height: 200px;
+            opacity: 1;
         }
-        .service-dropdown:active {
-          display: block;
+        
+        .menu-item {
+            transition: all 0.3s ease;
+            position: relative;
         }
-        .service-drop:hover ~ .service-dropdown{
-            display: block;
+        
+        .menu-item:hover {
+            transform: translateX(8px);
+            background: rgba(255, 255, 255, 0.1);
         }
-        .service-dropdown:hover {
-          display: block;
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 0;
+            background: #ffffff;
+            transition: height 0.3s ease;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .menu-item:hover::before {
+            height: 60%;
+        }
+        
+        .floating-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        
+        .icon-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40%, 43% {
+                transform: translateY(-8px);
+            }
+            70% {
+                transform: translateY(-4px);
+            }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .btn-modern {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-modern:hover::before {
+            left: 100%;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen">
     
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col items-center justify-center">
-            <div class="flex flex-row items-center justify-around w-full py-7 bg-white lg:py-0 bg-none shadow-md">
-                <div class="flex text-3xl lg:hidden text-blue-400">Dashboard <i class="fas fa-chart-line ml-2 animate-bounce"></i></div>
-                <label for="my-drawer-2" class="drawer-button lg:hidden text-blue-400 flex items-end">
-                    <i class="fa-solid fa-bars text-2xl"></i>
-                </label>
+        
+        <!-- Main Content -->
+        <div class="drawer-content flex flex-col">
+            <!-- Modern Header -->
+            <div class="floating-header sticky top-0 z-30 flex items-center justify-between px-6 py-4 lg:px-8">
+                <div class="flex items-center space-x-4">
+                    <label for="my-drawer-2" class="drawer-button lg:hidden btn btn-ghost btn-circle text-slate-600 hover:text-blue-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </label>
+                    <div class="hidden lg:flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-tools text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold text-slate-800">IT Repair Dashboard</h1>
+                            <p class="text-sm text-slate-500">ระบบแจ้งซ่อมคอมพิวเตอร์</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-sm">
+                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span class="text-sm text-slate-600">ระบบพร้อมใช้งาน</span>
+                    </div>
+                    <div class="w-8 h-8 bg-gradient-to-br from-slate-200 to-slate-300 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-slate-600 text-sm"></i>
+                    </div>
+                </div>
             </div>
             
-            <!-- Page content here -->
-            <div class="container mx-auto px-5 my-10">
-                @yield('content')
-            </div>
-          
+            <!-- Page Content -->
+            <main class="flex-1 p-6 lg:p-8">
+                <div class="max-w-7xl mx-auto">
+                    @yield('content')
+                </div>
+            </main>
         </div>
-        <div class="drawer-side z-10">
-          <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-          <ul class="menu bg-blue-400 min-h-full w-80 p-4 text-white">
-            <!-- Sidebar content here -->
-            <div>
-            <div class="text-3xl">Dashboard <i class="fas fa-chart-line animate-bounce"></i></div>
-            <div class="mt-5">
-            <li><a href="/" class="text-xl" target="_blank">Home</a></li>
-            <li>
-              <li class="text-xl service-drop"><a href="#">Service <i class="fa-solid fa-caret-down"></i></a></li>
-              <li class="service-dropdown text-xl ml-5">
-                <a href="/service-form" class="text-xl" target="_blank">Service Form</a>
-                <a href="/service-view" class="text-xl" target="_blank">Service View</a>
-              </li>
-            </li>
-            <li><a href="/about" class="text-xl" target="_blank">About Us</a></li>
-            <form method="POST" action="{{ route('logout') }}" class="mt-5">
-              @csrf
-              <button type="submit" class="btn btn-info text-white text-xl font-normal rounded-full">Log out</button>
-            </form>
-            </div>
-          </div>
-          </ul>
+        
+        <!-- Modern Sidebar -->
+        <div class="drawer-side">
+            <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+            <aside class="sidebar-gradient min-h-full w-80 shadow-2xl relative z-40">
+                <!-- Sidebar Header -->
+                <div class="p-6 border-b border-white/10">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                            <i class="fas fa-screwdriver-wrench text-white text-xl icon-bounce"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">IT Repair</h2>
+                            <p class="text-blue-100 text-sm">Management System</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Menu -->
+                <nav class="p-4 space-y-2 pb-24">
+                    <a href="/" target="_blank" class="menu-item flex items-center space-x-4 text-white hover:text-blue-100 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-home text-lg"></i>
+                        </div>
+                        <span class="font-medium">หน้าแรก</span>
+                        <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
+                    </a>
+                    
+                    <!-- Service Dropdown -->
+                    <div class="service-container">
+                        <button onclick="toggleServiceDropdown()" class="menu-item flex items-center space-x-4 text-white hover:text-blue-100 p-4 rounded-xl transition-all duration-300 w-full text-left">
+                            <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-cogs text-lg"></i>
+                            </div>
+                            <span class="font-medium flex-1">บริการซ่อม</span>
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-300" id="serviceChevron"></i>
+                        </button>
+                        
+                        <div class="service-dropdown ml-14 mt-2 space-y-1" id="serviceDropdown">
+                            <a href="/service-form" target="_blank" class="flex items-center space-x-3 text-blue-100 hover:text-white p-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+                                <i class="fas fa-plus-circle text-sm"></i>
+                                <span>แจ้งซ่อม</span>
+                                <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
+                            </a>
+                            <a href="/service-view" target="_blank" class="flex items-center space-x-3 text-blue-100 hover:text-white p-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+                                <i class="fas fa-list-alt text-sm"></i>
+                                <span>ดูรายการซ่อม</span>
+                                <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <a href="/about" target="_blank" class="menu-item flex items-center space-x-4 text-white hover:text-blue-100 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-info-circle text-lg"></i>
+                        </div>
+                        <span class="font-medium">เกี่ยวกับเรา</span>
+                        <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
+                    </a>
+                </nav>
+                
+                <!-- Logout Button -->
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/20 to-transparent">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn-modern w-full text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>ออกจากระบบ</span>
+                        </button>
+                    </form>
+                </div>
+            </aside>
         </div>
-      </div>
+    </div>
 
+    <!-- Modern Footer -->
+    <footer class="bg-slate-800 text-slate-300 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Company Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold">NBAC</h3>
+                            <p class="text-sm text-slate-400">IT Repair System</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        ระบบแจ้งซ่อมคอมพิวเตอร์ สำหรับวิทยาลัยเทคโนโลยีบริหารธุรกิจนาคประสิทธิ์
+                    </p>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold">ติดต่อเรา</h4>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-slate-400">โรงเรียนนาคประสิทธิ์ วัดบางช้างเหนือ</p>
+                        <p class="text-slate-400">วิทยาลัยเทคโนโลยีบริหารธุรกิจนาคประสิทธิ์</p>
+                    </div>
+                </div>
+                
+                <!-- Developer Info -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold">ผู้พัฒนา</h4>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-sm"></i>
+                        </div>
+                        <a href="https://www.instagram.com/karasumi_zz/?__pwa=1" 
+                           class="text-slate-300 hover:text-white transition-colors duration-300">
+                            Thanapon Khawkumkrong
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-700 mt-8 pt-8 text-center">
+                <p class="text-slate-500 text-sm">
+                    © 2024 Nakprasith Business Administration Technological College. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
 
- {{-------------------------- --}}
-    
-    <footer class="footer sm:footer-horizontal bg-gray-700 text-neutral-content p-10 shadow-2xl">
-        <aside class="space-y-10">
-          <svg
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            class="fill-current">
-            <path
-              d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
-          </svg>
-          <p className="font-semibold">
-            © Nakprasith School Wat Bangchangnua Foundation
-            <br />© Nakprasith Business Administration Technological College.
-            Main Site at NBAC
-            <br />
-            Develop & Design Website : <a href="https://www.instagram.com/karasumi_zz/?__pwa=1" class="hover:text-blue-400 transition">Thanapon Khawkumkrong</a>
-          </p>
-        </aside>
-        <nav>
-          
-        </nav>
-      </footer>
-      @stack('scripts')
+        // Service dropdown toggle
+        function toggleServiceDropdown() {
+            const dropdown = document.getElementById('serviceDropdown');
+            const chevron = document.getElementById('serviceChevron');
+            
+            dropdown.classList.toggle('active');
+            chevron.classList.toggle('rotate-180');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const serviceContainer = document.querySelector('.service-container');
+            if (!serviceContainer.contains(event.target)) {
+                const dropdown = document.getElementById('serviceDropdown');
+                const chevron = document.getElementById('serviceChevron');
+                dropdown.classList.remove('active');
+                chevron.classList.remove('rotate-180');
+            }
+        });
+
+        // Close mobile drawer when clicking menu items
+        document.querySelectorAll('.drawer-side a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth < 1024) {
+                    document.getElementById('my-drawer-2').checked = false;
+                }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    @stack('scripts')
 </body>
 </html>
