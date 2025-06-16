@@ -18,7 +18,7 @@ class DashboardController extends Controller
     $user = Auth::user();
     
     $notifications1 = Notification::latest()->take(5)->get();
-    $notifications2 = Notification::latest()->take(9)->get();
+    $notifications2 = Notification::latest()->take(6)->get();
     $unreadCount = Notification::where('is_read', false)->count();
     
     $weekcount = ServiceUser::whereBetween('created_at', [

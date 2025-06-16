@@ -55,6 +55,7 @@ Services DMS
                                     <th class="text-gray-700 font-semibold">สถานที่</th>
                                     <th class="text-gray-700 font-semibold">วันกำหนดส่งงาน</th>
                                     <th class="text-gray-700 font-semibold">วันส่งคำขอ</th>
+                                    <th class="text-gray-700 font-semibold">สถานะงาน</th>
                                     <th class="text-gray-700 font-semibold">จัดการ</th>
                                 </tr>
                             </thead>
@@ -70,6 +71,13 @@ Services DMS
                                     </td>
                                     <td class="text-gray-700">
                                         <span class="badge badge-outline badge-secondary">{{\Carbon\Carbon::parse($serviceuser->created_at)->format('Y-m-d')}}</span>
+                                    </td>
+                                    <td class="text-gray-700">
+                                    <label class="swap">
+                                        <input type="checkbox" class="toggle-active" data-id="{{ $serviceuser->id }}" {{ $serviceuser->status ? 'checked' : '' }} />
+                                        <div class="swap-on text-white bg-green-400 font-bold ring-1 ring-green-400 px-2 rounded-full">ON</div>
+                                        <div class="swap-off text-white bg-red-400 font-bold ring-1 ring-red-400 px-2 rounded-full">OFF</div>
+                                    </label>
                                     </td>
                                     <td>
                                         <div class="flex gap-2 justify-center">
@@ -119,6 +127,14 @@ Services DMS
                                     <div class="flex">
                                         <span class="font-medium text-gray-600 w-20">แจ้งเมื่อ:</span>
                                         <span class="badge badge-outline badge-secondary badge-sm">{{\Carbon\Carbon::parse($serviceuser->created_at)->format('Y-m-d')}}</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="font-medium text-gray-600 w-20">สถานะงาน:</span>
+                                    <label class="swap">
+                                        <input type="checkbox" class="toggle-active" data-id="{{ $serviceuser->id }}" {{ $serviceuser->status ? 'checked' : '' }} />
+                                        <div class="swap-on text-white bg-green-400 text-[12px] ring-1 ring-green-400 px-2 rounded-full">ON</div>
+                                        <div class="swap-off text-white bg-red-400 text-[12px] ring-1 ring-red-400 px-2 rounded-full">OFF</div>
+                                    </label>
                                     </div>
                                     <div class="mt-2">
                                         <span class="font-medium text-gray-600">รายละเอียด:</span>
@@ -183,6 +199,42 @@ Services DMS
         const modal = document.getElementById('success_modal');
         if(modal) modal.showModal();
     });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggles = document.querySelectorAll('.toggle-active');
+    
+    toggles.forEach(toggle => {
+        toggle.addEventListener('change', function() {
+            const id = this.getAttribute('data-id');
+            const status = this.checked ? 1 : 0;
+            
+            fetch(`/serviceuser/toggle/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({
+                    status: status
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('อัพเดทสำเร็จ');
+                } else {
+                    console.error('เกิดข้อผิดพลาด');
+                    this.checked = !this.checked;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                this.checked = !this.checked;
+            });
+        });
+    });
+});
 </script>
 @endif
 @endsection

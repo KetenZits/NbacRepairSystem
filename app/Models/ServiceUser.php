@@ -15,7 +15,10 @@ class ServiceUser extends Model
         'detailrepair',
         'location',
         'date',
+        'status',
     ];
-
+    protected $casts = [
+        'status' => 'boolean',
+    ];
     public $timestamps = true; //create_at, update_at
 }

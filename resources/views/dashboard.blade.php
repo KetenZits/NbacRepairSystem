@@ -6,6 +6,7 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 {{-- calendar link --}}
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <style>
@@ -185,6 +186,128 @@
         </div>
       </div>
     </div>
+    <!-- ----export excel---- -->
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-2xl mx-auto">
+          <!-- Header Card -->
+          <div class="card bg-white shadow-xl mb-8">
+              <div class="card-body text-center">
+                  <div class="flex justify-center mb-4">
+                      <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                          </svg>
+                      </div>
+                  </div>
+                  <h1 class="text-3xl font-bold text-gray-800 mb-2">Export ไฟล์ Excel</h1>
+                  <p class="text-gray-600">เลือกช่วงวันที่ที่ต้องการ Export ข้อมูล</p>
+              </div>
+          </div>
+
+          <!-- Error Messages -->
+          @if ($errors->any())
+              <div class="alert alert-error mb-6 shadow-lg">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                  </svg>
+                  <div>
+                      <ul class="list-disc list-inside">
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              </div>
+          @endif
+
+          <!-- Main Form Card -->
+          <div class="card bg-white shadow-xl">
+              <div class="card-body">
+                  <form action="{{ route('export.excel') }}" method="POST" class="space-y-6">
+                      @csrf
+                      
+                      <!-- Date Range Section -->
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <!-- Start Date -->
+                          <div class="form-control">
+                              <label class="label">
+                                  <span class="label-text text-lg font-semibold text-gray-700">
+                                      <svg class="w-5 h-5 inline mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                      </svg>
+                                      วันที่เริ่มต้น
+                                  </span>
+                              </label>
+                              <input type="text" 
+                                     name="start_date" 
+                                     id="start_date" 
+                                     class="input input-bordered input-primary w-full text-lg" 
+                                     placeholder="เลือกวันที่เริ่มต้น" 
+                                     required>
+                          </div>
+
+                          <!-- End Date -->
+                          <div class="form-control">
+                              <label class="label">
+                                  <span class="label-text text-lg font-semibold text-gray-700">
+                                      <svg class="w-5 h-5 inline mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                      </svg>
+                                      วันที่สิ้นสุด
+                                  </span>
+                              </label>
+                              <input type="text" 
+                                     name="end_date" 
+                                     id="end_date" 
+                                     class="input input-bordered input-primary w-full text-lg" 
+                                     placeholder="เลือกวันที่สิ้นสุด" 
+                                     required>
+                          </div>
+                      </div>
+
+                      <!-- Quick Select Buttons -->
+                      <div class="divider">ตัวเลือกเร็ว</div>
+                      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('today')">วันนี้</button>
+                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('yesterday')">เมื่อวาน</button>
+                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('thisWeek')">สัปดาห์นี้</button>
+                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('thisMonth')">เดือนนี้</button>
+                      </div>
+
+                      <!-- Submit Button -->
+                      <div class="card-actions justify-center pt-6">
+                          <button type="submit" class="btn btn-primary btn-lg w-full md:w-auto px-12 shadow-lg">
+                              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                              </svg>
+                              Export ไฟล์ Excel
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+          <!-- Info Card -->
+          <div class="card bg-blue-50 shadow-md mt-8">
+              <div class="card-body">
+                  <div class="flex items-start space-x-3">
+                      <svg class="w-6 h-6 text-blue-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <div>
+                          <h3 class="font-semibold text-gray-800 mb-2">ข้อมูลเพิ่มเติม</h3>
+                          <ul class="text-sm text-gray-600 space-y-1">
+                              <li>• ไฟล์ Excel จะถูกดาวน์โหลดอัตโนมัติเมื่อกดปุ่ม Export</li>
+                              <li>• รองรับการเลือกช่วงวันที่สูงสุด 1 ปี</li>
+                              <li>• ข้อมูลจะถูก Export ในรูปแบบ .xlsx</li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- ----export excel---- -->
   </div>
 </div>
 @endsection
@@ -194,6 +317,8 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales/th.global.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/th.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -336,5 +461,65 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+const startDatePicker = flatpickr("#start_date", {
+            locale: "th",
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+            onChange: function(selectedDates, dateStr, instance) {
+                endDatePicker.set('minDate', dateStr);
+            }
+        });
+
+        const endDatePicker = flatpickr("#end_date", {
+            locale: "th", 
+            dateFormat: "Y-m-d",
+            maxDate: "today"
+        });
+
+        // Quick date range functions
+        function setDateRange(range) {
+            const today = new Date();
+            let startDate, endDate;
+
+            switch(range) {
+                case 'today':
+                    startDate = endDate = today;
+                    break;
+                case 'yesterday':
+                    startDate = endDate = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+                    break;
+                case 'thisWeek':
+                    const firstDay = new Date(today.setDate(today.getDate() - today.getDay()));
+                    startDate = firstDay;
+                    endDate = new Date();
+                    break;
+                case 'thisMonth':
+                    startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                    endDate = new Date();
+                    break;
+            }
+
+            startDatePicker.setDate(startDate);
+            endDatePicker.setDate(endDate);
+        }
+
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const startDate = document.getElementById('start_date').value;
+            const endDate = document.getElementById('end_date').value;
+            
+            if (!startDate || !endDate) {
+                e.preventDefault();
+                alert('กรุณาเลือกวันที่เริ่มต้นและวันที่สิ้นสุด');
+                return;
+            }
+            
+            if (new Date(startDate) > new Date(endDate)) {
+                e.preventDefault();
+                alert('วันที่เริ่มต้นต้องไม่เกินวันที่สิ้นสุด');
+                return;
+            }
+        });
 </script>
 @endpush

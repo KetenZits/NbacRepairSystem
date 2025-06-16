@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -187,7 +188,7 @@
                     <h4 class="text-lg font-semibold text-white">สถาบันการศึกษา</h4>
                     <div class="text-sm text-gray-300 space-y-2">
                         <p class="flex items-center">
-                            <i class="fas fa-graduation-cap mr-2 text-blue-400"></i>
+                            <i class="fas fa-graduation-cap mr-1 text-blue-400"></i>
                             โรงเรียนนาคประสิทธิ์ วัดบางช้างเหนือ
                         </p>
                         <p class="flex items-center">

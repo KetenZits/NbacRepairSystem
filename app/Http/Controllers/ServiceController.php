@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ServiceController extends Controller
 {
@@ -131,4 +133,62 @@ class ServiceController extends Controller
     return redirect()->route('service-view')->with('error', 'Cant find data to delete.');
     }
 
+public function toggle(Request $request, $id){
+    $serviceUser = ServiceUser::findOrFail($id);
+    $serviceUser->status = (int) $request->input('status'); // cast เป็น int
+    $saved = $serviceUser->save();
+    
+    // debug ดู
+    \Log::info('Toggle request มาแล้วจ้า', [
+    'id' => $id,
+    'status' => $request->status
+]);
+
+    return response()->json([
+        'success' => true,
+        'new_status' => $serviceUser->status
+    ]);
+}
+
+    public function exportExcel(Request $request){
+        
+            $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $startDate = $request->start_date . ' 00:00:00';
+        $endDate = $request->end_date . ' 23:59:59';
+
+        $data = ServiceUser::whereBetween('date', [$request->start_date, $request->end_date])->get();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // หัวตาราง
+        $sheet->fromArray([
+            ['Name', 'Item Repair', 'Detail Repair', 'Location', 'Date']
+        ], null, 'A1');
+
+        // ข้อมูลทีละแถว
+        $row = 2;
+        foreach ($data as $item) {
+            $sheet->setCellValue("A{$row}", $item->name);
+            $sheet->setCellValue("B{$row}", $item->itemrepair);
+            $sheet->setCellValue("C{$row}", $item->detailrepair);
+            $sheet->setCellValue("D{$row}", $item->location);
+            $sheet->setCellValue("E{$row}", $item->date);
+            $row++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+
+        $filename = 'ServiceUser_'.date('Ymd_His').'.xlsx';
+
+        return response()->streamDownload(function() use ($writer) {
+            $writer->save('php://output');
+        }, $filename, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ]);
+    }
 }

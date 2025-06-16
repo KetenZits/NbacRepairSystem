@@ -36,6 +36,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/service-edit/{id}', [ServiceController::class, 'showServiceEdit'])->name('service-edit');
     Route::get('/service-destroy/{id}', [ServiceController::class, 'servicedestroy'])->name('service-destroy');
     Route::post('/service-update/{id}', [ServiceController::class, 'serviceupdate'])->name('service-update');
+    Route::post('/export-excel', [ServiceController::class, 'exportExcel'])->name('export.excel');
+    Route::post('/service/toggle/{id}', [ServiceController::class, 'toggle'])->name('service.toggle');
 });
 
 Route::get('/', function () {
