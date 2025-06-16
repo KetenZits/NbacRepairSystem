@@ -14,6 +14,7 @@ Services DMS
             <p class="text-gray-600 text-lg">ระบบจัดการคำขอแจ้งซ่อม</p>
         </div>
 
+        
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="stats shadow-lg bg-white border border-blue-100">
@@ -25,6 +26,28 @@ Services DMS
                     </div>
                     <div class="stat-title text-gray-600">รายการทั้งหมด</div>
                     <div class="stat-value text-blue-600">{{ count($serviceusers) }}</div>
+                </div>
+            </div>
+            <div class="stats shadow-lg bg-white border border-blue-100">
+                <div class="stat">
+                    <div class="stat-figure text-red-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+                    <div class="stat-title text-gray-600">รายการที่ยังไม่เสร็จ</div>
+                    <div class="stat-value text-red-600">{{ $unsuccesstask }}</div>
+                </div>
+            </div>
+            <div class="stats shadow-lg bg-white border border-blue-100">
+                <div class="stat">
+                    <div class="stat-figure text-green-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <div class="stat-title text-gray-600">รายการที่เสร็จแล้ว</div>
+                    <div class="stat-value text-green-600">{{ $successtask }}</div>
                 </div>
             </div>
         </div>
@@ -89,7 +112,7 @@ Services DMS
                                             </a>
                                             <a href="{{ route('service-destroy', $serviceuser->id) }}" class="btn btn-sm btn-error text-white hover:btn-error-focus" onclick="return confirm('คุณแน่ใจหรือไม่ที่จะลบข้อมูลนี้?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a2 2 0 00-1 1v3M4 7h16" />
                                                 </svg>
                                                 ลบ
                                             </a>
@@ -194,31 +217,43 @@ Services DMS
         <button>close</button>
     </form>
 </dialog>
-<script>
-console.log("test");
-document.addEventListener('DOMContentLoaded', function() {
-    // Modal
-    const modal = document.getElementById('success_modal');
-    if (modal) modal.showModal();
+@endif
 
-    // เอา token แบบแน่นหนา
+<script>
+console.log("JS Script loaded!");
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM Content Loaded");
+    
+    // จัดการ Modal ถ้ามี
+    @if(session('success'))
+    const modal = document.getElementById('success_modal');
+    if (modal) {
+        console.log("Opening success modal");
+        modal.showModal();
+    }
+    @endif
+
+    // เอา CSRF Token
     const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
     if (!csrfTokenMeta) {
-        console.error('ไม่มี meta csrf-token กูว่ามึงลืมใส่มันใน <head>');
+        console.error('ไม่มี meta csrf-token');
         return;
     }
     const csrfToken = csrfTokenMeta.getAttribute('content');
 
     // หาทุก toggle
     const toggles = document.querySelectorAll('.toggle-active');
-    console.log('เจอ toggle กี่ตัว', toggles.length);
 
-    toggles.forEach(toggle => {
+    toggles.forEach((toggle, index) => {
+        
         toggle.addEventListener('change', function() {
-            console.log('Toggle ถูกกด id:', this.dataset.id);
+            console.log('Toggle ถูกกด! ID:', this.dataset.id, 'Status:', this.checked);
             const id = this.dataset.id;
             const status = this.checked ? 1 : 0;
             const input = this;
+
+            // แสดงการโหลด (optional)
+            input.disabled = true;
 
             fetch(`/service/toggle/${id}`, {
                 method: 'POST',
@@ -230,27 +265,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({ status: status })
             })
             .then(response => {
-                console.log('Status code:', response.status);
-                if (!response.ok) throw new Error('HTTP error ' + response.status);
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 return response.json();
             })
             .then(data => {
-                console.log('Response data:', data);
+                console.log('Success response:', data);
                 if (!data.success) {
-                    console.error('เกิดข้อผิดพลาดจากเซิร์ฟเวอร์');
+                    console.error('เกิดข้อผิดพลาดจากเซิร์ฟเวอร์:', data.message || 'Unknown error');
                     input.checked = !input.checked; // กลับ toggle ถ้าผิดพลาด
                 } else {
-                    console.log('อัพเดทสถานะสำเร็จ:', data.new_status);
+                    console.log('อัพเดทสถานะสำเร็จ! New status:', data.new_status);
                 }
             })
             .catch(error => {
                 console.error('Fetch error:', error);
+                alert('เกิดข้อผิดพลาด: ' + error.message);
                 input.checked = !input.checked; // กลับ toggle ถ้าผิดพลาด
+            })
+            .finally(() => {
+                input.disabled = false;
             });
         });
     });
 });
 </script>
-
-@endif
 @endsection

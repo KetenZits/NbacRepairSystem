@@ -17,6 +17,7 @@ class DashboardController extends Controller
 {
     $user = Auth::user();
     
+
     $notifications1 = Notification::latest()->take(5)->get();
     $notifications2 = Notification::latest()->take(6)->get();
     $unreadCount = Notification::where('is_read', false)->count();
@@ -40,7 +41,6 @@ class DashboardController extends Controller
         $error_message = 'ヽ༼ ಥ_ಥ༽ﾉ Ahhhhhh...Not Authorized';
         return view('dashboard', compact('error_message', 'notifications', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount'));
     }
-
     return view('dashboard', compact('notifications1', 'notifications2', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount'));
 }
 
