@@ -321,6 +321,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/th.js"></script>
 
 <script>
+console.log("test");
 document.addEventListener("DOMContentLoaded", function () {
   if (typeof Chart === 'undefined') {
     console.error("Chart.js ไม่ถูกโหลด");

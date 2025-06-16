@@ -18,7 +18,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
 Route::get('/verifyfail', function () {
     return view('loginfail');
 })->name('login');
-
+Route::post('/service/toggle/{id}', [ServiceController::class, 'toggle']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -37,7 +37,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/service-destroy/{id}', [ServiceController::class, 'servicedestroy'])->name('service-destroy');
     Route::post('/service-update/{id}', [ServiceController::class, 'serviceupdate'])->name('service-update');
     Route::post('/export-excel', [ServiceController::class, 'exportExcel'])->name('export.excel');
-    Route::post('/service/toggle/{id}', [ServiceController::class, 'toggle'])->name('service.toggle');
+    
 });
 
 Route::get('/', function () {

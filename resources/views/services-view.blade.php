@@ -2,7 +2,7 @@
 @section('title')
 Services DMS
 @endsection
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
     <div class="container mx-auto px-4 py-8">
@@ -129,7 +129,7 @@ Services DMS
                                         <span class="badge badge-outline badge-secondary badge-sm">{{\Carbon\Carbon::parse($serviceuser->created_at)->format('Y-m-d')}}</span>
                                     </div>
                                     <div class="flex">
-                                        <span class="font-medium text-gray-600 w-20">สถานะงาน:</span>
+                                    <span class="font-medium text-gray-600 w-20">สถานะงาน:</span>
                                     <label class="swap">
                                         <input type="checkbox" class="toggle-active" data-id="{{ $serviceuser->id }}" {{ $serviceuser->status ? 'checked' : '' }} />
                                         <div class="swap-on text-white bg-green-400 text-[12px] ring-1 ring-green-400 px-2 rounded-full">ON</div>
@@ -195,46 +195,62 @@ Services DMS
     </form>
 </dialog>
 <script>
-    window.addEventListener('DOMContentLoaded', function () {
-        const modal = document.getElementById('success_modal');
-        if(modal) modal.showModal();
-    });
-
+console.log("test");
 document.addEventListener('DOMContentLoaded', function() {
+    // Modal
+    const modal = document.getElementById('success_modal');
+    if (modal) modal.showModal();
+
+    // เอา token แบบแน่นหนา
+    const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
+    if (!csrfTokenMeta) {
+        console.error('ไม่มี meta csrf-token กูว่ามึงลืมใส่มันใน <head>');
+        return;
+    }
+    const csrfToken = csrfTokenMeta.getAttribute('content');
+
+    // หาทุก toggle
     const toggles = document.querySelectorAll('.toggle-active');
-    
+    console.log('เจอ toggle กี่ตัว', toggles.length);
+
     toggles.forEach(toggle => {
         toggle.addEventListener('change', function() {
-            const id = this.getAttribute('data-id');
+            console.log('Toggle ถูกกด id:', this.dataset.id);
+            const id = this.dataset.id;
             const status = this.checked ? 1 : 0;
-            
-            fetch(`/serviceuser/toggle/${id}`, {
+            const input = this;
+
+            fetch(`/service/toggle/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'X-CSRF-TOKEN': csrfToken,
                     'X-Requested-With': 'XMLHttpRequest'
                 },
-                body: JSON.stringify({
-                    status: status
-                })
+                body: JSON.stringify({ status: status })
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log('Status code:', response.status);
+                if (!response.ok) throw new Error('HTTP error ' + response.status);
+                return response.json();
+            })
             .then(data => {
-                if (data.success) {
-                    console.log('อัพเดทสำเร็จ');
+                console.log('Response data:', data);
+                if (!data.success) {
+                    console.error('เกิดข้อผิดพลาดจากเซิร์ฟเวอร์');
+                    input.checked = !input.checked; // กลับ toggle ถ้าผิดพลาด
                 } else {
-                    console.error('เกิดข้อผิดพลาด');
-                    this.checked = !this.checked;
+                    console.log('อัพเดทสถานะสำเร็จ:', data.new_status);
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                this.checked = !this.checked;
+                console.error('Fetch error:', error);
+                input.checked = !input.checked; // กลับ toggle ถ้าผิดพลาด
             });
         });
     });
 });
 </script>
+
 @endif
 @endsection

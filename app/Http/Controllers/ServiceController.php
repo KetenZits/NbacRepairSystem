@@ -133,22 +133,21 @@ class ServiceController extends Controller
     return redirect()->route('service-view')->with('error', 'Cant find data to delete.');
     }
 
-public function toggle(Request $request, $id){
-    $serviceUser = ServiceUser::findOrFail($id);
-    $serviceUser->status = (int) $request->input('status'); // cast เป็น int
-    $saved = $serviceUser->save();
-    
-    // debug ดู
-    \Log::info('Toggle request มาแล้วจ้า', [
-    'id' => $id,
-    'status' => $request->status
-]);
-
-    return response()->json([
-        'success' => true,
-        'new_status' => $serviceUser->status
+    public function toggle(Request $request, $id){
+        $serviceUser = ServiceUser::findOrFail($id);
+        $serviceUser->status = (int) $request->input('status');
+        $saved = $serviceUser->save();
+        
+        \Log::info('Toggle request มาแล้วจ้า', [
+        'id' => $id,
+        'status' => $request->input('status')
     ]);
-}
+
+        return response()->json([
+            'success' => true,
+            'new_status' => $serviceUser->status
+        ]);
+    }
 
     public function exportExcel(Request $request){
         

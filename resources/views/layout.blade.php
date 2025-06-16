@@ -7,18 +7,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
-
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
-        rel="stylesheet"> --}}
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/64cb7c5dd2.js" crossorigin="anonymous"></script>
     <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- ปิดการใช้ -->
@@ -31,25 +23,17 @@
 
     <!-- AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 
-    <!-- ปิดการใช้งาน -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    
 
-    {{-- <!-- Bootstrap JS (ต้องมีเพื่อให้ dropdown ทำงาน) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> --}}
 
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/font.css', 'resources/css/bootstrap.min.css', 'resources/css/font-awesome.min.css', 'resources/css/aos.css', 'resources/css/owl.carousel.min.css', 'resources/css/owl.theme.default.min.css', 'resources/css/templatemo-digital-trend.css'])
-    @vite(['resources/js/aos.js', 'resources/js/jquery.min.js', 'resources/js/bootstrap.min.js', 'resources/js/owl.carousel.min.js', 'resources/js/smoothscroll.js', 'resources/js/custom.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
+
+
 
     <title>@yield('title')</title>
-
-    <!-- เชื่อมโยง Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Raleway:500,700" rel="stylesheet">
     <style>
         body{
             font-family: "Noto Sans Thai", sans-serif;
@@ -233,5 +217,8 @@
             </div>
         </div>
     </footer>
+    <script>
+        console.log("test form layout");
+    </script>
 </body>
 </html>
