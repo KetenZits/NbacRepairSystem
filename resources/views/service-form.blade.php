@@ -110,7 +110,7 @@ Services Form
             @csrf
             
             <!-- Name Field -->
-            <div class="form-control form-field" data-aos="fade-right" data-aos-delay="300">
+            <div class="form-control form-field" data-aos="fade-right">
               <label class="label">
                 <span class="label-text text-lg font-semibold text-slate-700 flex items-center gap-2">
                   <i class="fas fa-user text-blue-500"></i>
@@ -121,7 +121,7 @@ Services Form
                 type="text" 
                 name="name" 
                 value="{{ old('name') }}"
-                placeholder="โปรดระบุชื่อของคุณ" 
+                placeholder="โปรดระบุชื่อของคุณ(ห้ามมีตัวอักษรพิเศษ เช่น / * - + % $ # @ ! _)" 
                 class="input input-bordered input-lg w-full bg-white/80 backdrop-blur focus:bg-white transition-all duration-300 border-slate-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-100" 
               />
               @error('name')
@@ -135,7 +135,7 @@ Services Form
             </div>
 
             <!-- Item to Repair Field -->
-            <div class="form-control form-field" data-aos="fade-left" data-aos-delay="400">
+            <div class="form-control form-field" data-aos="fade-left">
               <label class="label">
                 <span class="label-text text-lg font-semibold text-slate-700 flex items-center gap-2">
                   <i class="fas fa-wrench text-green-500"></i>
@@ -160,7 +160,7 @@ Services Form
             </div>
 
             <!-- Detail Field -->
-            <div class="form-control form-field" data-aos="fade-right" data-aos-delay="500">
+            <div class="form-control form-field" data-aos="fade-right">
               <label class="label">
                 <span class="label-text text-lg font-semibold text-slate-700 flex items-center gap-2">
                   <i class="fas fa-clipboard-list text-purple-500"></i>
@@ -183,7 +183,7 @@ Services Form
             </div>
 
             <!-- Location Field -->
-            <div class="form-control form-field" data-aos="fade-left" data-aos-delay="600">
+            <div class="form-control form-field" data-aos="fade-left">
               <label class="label">
                 <span class="label-text text-lg font-semibold text-slate-700 flex items-center gap-2">
                   <i class="fas fa-map-marker-alt text-red-500"></i>
@@ -208,11 +208,11 @@ Services Form
             </div>
 
             <!-- Date Field -->
-            <div class="form-control form-field" data-aos="fade-right" data-aos-delay="700">
+            <div class="form-control form-field" data-aos="fade-right">
               <label class="label">
                 <span class="label-text text-lg font-semibold text-slate-700 flex items-center gap-2">
                   <i class="fas fa-calendar-alt text-orange-500"></i>
-                  วันที่ต้องการให้เสร็จ
+                  กำหนดส่งงานก่อน
                 </span>
               </label>
               <input 
@@ -235,7 +235,7 @@ Services Form
             </div>
 
             <!-- Submit Button -->
-            <div class="form-control pt-4" data-aos="fade-up" data-aos-delay="800">
+            <div class="form-control pt-4" data-aos="fade-up">
               <button 
                 type="submit" 
                 class="btn btn-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white border-0 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group"

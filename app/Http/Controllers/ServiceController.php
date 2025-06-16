@@ -40,7 +40,7 @@ class ServiceController extends Controller
     public function servicestore(Request $request){
         // Validate the request data
         $request->validate([
-            'name' => 'required|string|regex:/^[a-zA-Z0-9]+$/',
+            'name' => 'required|string|regex:/^[\p{Thai}\p{L}\p{N}\s]+$/u',
             'itemrepair' => 'required',
             'detailrepair' => 'required',
             'location' => 'required',
