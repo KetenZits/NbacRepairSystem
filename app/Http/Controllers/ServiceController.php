@@ -70,6 +70,7 @@ class ServiceController extends Controller
             'detailrepair' => $request->detailrepair,
             'location' => $request->location,
             'date' => $request->date,
+            'status' => 0
         ]);
         // You can use a model to save the data to the database
 
