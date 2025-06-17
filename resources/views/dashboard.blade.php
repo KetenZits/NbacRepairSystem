@@ -505,22 +505,5 @@ const startDatePicker = flatpickr("#start_date", {
             endDatePicker.setDate(endDate);
         }
 
-        // Form validation
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const startDate = document.getElementById('start_date').value;
-            const endDate = document.getElementById('end_date').value;
-            
-            if (!startDate || !endDate) {
-                e.preventDefault();
-                alert('กรุณาเลือกวันที่เริ่มต้นและวันที่สิ้นสุด');
-                return;
-            }
-            
-            if (new Date(startDate) > new Date(endDate)) {
-                e.preventDefault();
-                alert('วันที่เริ่มต้นต้องไม่เกินวันที่สิ้นสุด');
-                return;
-            }
-        });
 </script>
 @endpush
