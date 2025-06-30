@@ -30,8 +30,8 @@ class ServiceController extends Controller
 
     public function showServiceView(){
 
-        $serviceusers = DB::table('serviceuser')->orderBy('created_at', 'desc')->get();
-        $unsuccesstask = ServiceUser::where('status', '0')->count();
+    $serviceusers = DB::table('serviceuser')->orderBy('created_at', 'desc')->get();
+    $unsuccesstask = ServiceUser::where('status', '0')->count();
     $successtask = ServiceUser::where('status', '1')->count();
         // dd($serviceusers);
         return view('services-view',compact('serviceusers', 'unsuccesstask', 'successtask'));

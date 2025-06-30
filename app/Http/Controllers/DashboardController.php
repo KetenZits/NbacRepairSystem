@@ -22,6 +22,9 @@ class DashboardController extends Controller
     $notifications2 = Notification::latest()->take(6)->get();
     $unreadCount = Notification::where('is_read', false)->count();
     
+    $unsuccesstask = ServiceUser::where('status', '0')->count();
+    $successtask = ServiceUser::where('status', '1')->count();
+
     $weekcount = ServiceUser::whereBetween('created_at', [
         Carbon::now()->startOfWeek(),  
         Carbon::now()->endOfWeek(),    
@@ -39,9 +42,9 @@ class DashboardController extends Controller
 
     if (!$user) {
         $error_message = 'ヽ༼ ಥ_ಥ༽ﾉ Ahhhhhh...Not Authorized';
-        return view('dashboard', compact('error_message', 'notifications', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount'));
+        return view('dashboard', compact('error_message', 'notifications', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount', 'unsuccesstask', 'successtask'));
     }
-    return view('dashboard', compact('notifications1', 'notifications2', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount'));
+    return view('dashboard', compact('notifications1', 'notifications2', 'user', 'unreadCount', 'weekcount', 'monthcount', 'yearcount', 'unsuccesstask', 'successtask'));
 }
 
     public function serviceView()

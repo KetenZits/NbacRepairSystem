@@ -104,7 +104,35 @@
         <canvas id="myChart2"></canvas>
       </div>
     </div>
+    {{-- successtask and nonsuccesstask --}}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
 
+      <div class="stat-modern p-6 rounded-2xl">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-sm font-medium text-slate-600 mb-1">รายการที่สำเร็จแล้ว</div>
+            <div class="text-3xl font-bold text-green-400">{{ $successtask }}</div>
+            <div class="text-xs text-slate-500 mt-1">รายการที่สำเร็จทั้งหมด</div>
+          </div>
+          <div class="text-4xl text-green-400">
+            <i class="fas fa-tools"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-modern p-6 rounded-2xl">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-sm font-medium text-slate-600 mb-1">รายการที่ยังไม่สำเร็จ</div>
+            <div class="text-3xl font-bold text-red-500">{{ $unsuccesstask }}</div>
+            <div class="text-xs text-slate-500 mt-1">รายการที่ยังไม่สำเร็จทั้งหมด</div>
+          </div>
+          <div class="text-4xl text-red-500">
+            <i class="fas fa-tools"></i>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Statistics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
       <div class="stat-modern p-6 rounded-2xl">
@@ -265,14 +293,6 @@
                           </div>
                       </div>
 
-                      <!-- Quick Select Buttons -->
-                      <div class="divider">ตัวเลือกเร็ว</div>
-                      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('today')">วันนี้</button>
-                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('yesterday')">เมื่อวาน</button>
-                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('thisWeek')">สัปดาห์นี้</button>
-                          <button type="button" class="btn btn-outline btn-sm" onclick="setDateRange('thisMonth')">เดือนนี้</button>
-                      </div>
 
                       <!-- Submit Button -->
                       <div class="card-actions justify-center pt-6">

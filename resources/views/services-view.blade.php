@@ -98,8 +98,8 @@ Services DMS
                                     <td class="text-gray-700">
                                     <label class="swap">
                                         <input type="checkbox" class="toggle-active" data-id="{{ $serviceuser->id }}" {{ $serviceuser->status ? 'checked' : '' }} />
-                                        <div class="swap-on text-white bg-green-400 font-bold ring-1 ring-green-400 px-2 rounded-full">ON</div>
-                                        <div class="swap-off text-white bg-red-400 font-bold ring-1 ring-red-400 px-2 rounded-full">OFF</div>
+                                        <div class="swap-on text-white bg-green-400 font-bold ring-1 ring-green-400 px-2 rounded-full">Done</div>
+                                        <div class="swap-off text-white bg-red-400 font-bold ring-1 ring-red-400 px-2 rounded-full">Not Done</div>
                                     </label>
                                     </td>
                                     <td>
