@@ -9,7 +9,7 @@
 
 @section('content')
     <!-- Hero Section -->
-    <div class="hero min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 relative overflow-hidden">
+    <div class="hero min-h-screen bg-gradient-to-br from-blue-900/70 via-blue-800/70 to-slate-900 relative overflow-hidden">
         <!-- Background Pattern -->
         <div class="absolute inset-0 bg-[url(/public/picture/background/background.jpg)] bg-cover bg-center bg-no-repeat opacity-20"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
