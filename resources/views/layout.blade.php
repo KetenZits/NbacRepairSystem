@@ -35,6 +35,7 @@
 
     <title>@yield('title')</title>
     <style>
+        
         body{
             font-family: "Noto Sans Thai", sans-serif;
         }
@@ -50,7 +51,7 @@
         }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
     
     
 <div class="navbar bg-white/95 backdrop-blur-md shadow-lg border-b border-blue-100 px-4 lg:px-8 sticky top-0 z-50">
