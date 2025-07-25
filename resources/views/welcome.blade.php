@@ -6,8 +6,116 @@
 @vite('resources/css/app.css')
 {{-- AOS Animation --}}
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+<style>
+        
+        .orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.33);
+                opacity: 1;
+            }
+            80%, 100% {
+                transform: scale(2.4);
+                opacity: 0;
+            }
+        }
+        
+        .loader-circle {
+            width: 120px;
+            height: 120px;
+            border: 4px solid rgba(102, 126, 234, 0.2);
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .loader-inner {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(118, 75, 162, 0.3);
+            border-top: 3px solid #764ba2;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+    </style>
 
 @section('content')
+     <!-- Enhanced Preloader -->
+    <div id="preloader" class="fixed inset-0 z-50 gradient-bg flex items-center justify-center overflow-hidden">
+        <!-- Particles Background -->
+        <div id="particles-js"></div>
+        
+        <!-- Main Content -->
+        <div class="relative z-10 flex flex-col items-center gap-8">
+            <!-- Animated Logo/Icon -->
+            <div class="relative">
+                <!-- Pulse Rings -->
+                <div class="pulse-ring w-32 h-32"></div>
+                <div class="pulse-ring w-32 h-32" style="animation-delay: 0.5s;"></div>
+                <div class="pulse-ring w-32 h-32" style="animation-delay: 1s;"></div>
+                
+                <!-- Main Loader -->
+                <div id="main-loader" class="loader-circle glow">
+                    <div class="loader-inner"></div>
+                    <!-- Center Icon -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <svg id="center-icon" class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading Text -->
+            <div class="text-center">
+                <h2 id="loading-title" class="text-4xl font-bold text-white orbitron mb-2 opacity-0">LOADING</h2>
+                <div id="progress-bar" class="w-64 h-1 bg-white bg-opacity-20 rounded-full overflow-hidden">
+                    <div id="progress-fill" class="h-full bg-white rounded-full transform -translate-x-full"></div>
+                </div>
+                <p id="loading-text" class="text-lg text-white text-opacity-80 mt-4 orbitron opacity-0">Initializing...</p>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div id="floating-elements" class="absolute inset-0 pointer-events-none">
+                <div class="floating-dot absolute w-2 h-2 bg-white rounded-full opacity-60" style="top: 20%; left: 10%;"></div>
+                <div class="floating-dot absolute w-3 h-3 bg-white rounded-full opacity-40" style="top: 60%; right: 15%;"></div>
+                <div class="floating-dot absolute w-1 h-1 bg-white rounded-full opacity-80" style="bottom: 30%; left: 20%;"></div>
+                <div class="floating-dot absolute w-2 h-2 bg-white rounded-full opacity-50" style="top: 40%; right: 25%;"></div>
+            </div>
+        </div>
+    </div>
     <!-- Hero Section -->
     <div class="hero min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden overflow-x-hidden">
         <!-- Background Pattern with Better Overlay -->
@@ -415,5 +523,239 @@
                 });
             });
         });
+        // Initialize Particles.js
+         particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ffffff"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: false,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: false,
+                        mode: "push"
+                    },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // GSAP Animations
+        const tl = gsap.timeline();
+
+        // Initial setup
+        gsap.set("#loading-title, #loading-text", { opacity: 0, y: 20 });
+        gsap.set("#main-loader", { scale: 0, rotation: 0 });
+        gsap.set("#center-icon", { scale: 0, rotation: 0 });
+        gsap.set(".floating-dot", { scale: 0, y: 0 });
+
+        // Main animation sequence
+        tl.to("#main-loader", {
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        })
+        .to("#center-icon", {
+            scale: 1,
+            rotation: 360,
+            duration: 1,
+            ease: "back.out(1.7)"
+        }, "-=0.5")
+        .to("#loading-title", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out"
+        }, "-=0.3")
+        .to("#loading-text", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out"
+        }, "-=0.4")
+        .to(".floating-dot", {
+            scale: 1,
+            y: -20,
+            duration: 2,
+            ease: "power1.inOut",
+            repeat: -1,
+            yoyo: true,
+            stagger: 0.2
+        }, "-=0.5");
+
+        // Continuous animations
+        gsap.to("#main-loader", {
+            rotation: 360,
+            duration: 2,
+            ease: "none",
+            repeat: -1
+        });
+
+        gsap.to(".loader-inner", {
+            rotation: -360,
+            duration: 1.5,
+            ease: "none",
+            repeat: -1
+        });
+
+        gsap.to("#center-icon", {
+            rotation: "+=360",
+            duration: 4,
+            ease: "none",
+            repeat: -1
+        });
+
+        // Progress bar animation
+        gsap.to("#progress-fill", {
+            x: "0%",
+            duration: 3,
+            ease: "power2.inOut"
+        });
+
+        // Loading text updates
+        const loadingTexts = [
+            "Initializing...",
+            "Loading assets...",
+            "Preparing interface...",
+            "Almost ready...",
+            "Welcome!"
+        ];
+
+        let textIndex = 0;
+        const textInterval = setInterval(() => {
+            if (textIndex < loadingTexts.length - 1) {
+                textIndex++;
+                gsap.to("#loading-text", {
+                    opacity: 0,
+                    duration: 0.3,
+                    onComplete: () => {
+                        document.getElementById("loading-text").textContent = loadingTexts[textIndex];
+                        gsap.to("#loading-text", {
+                            opacity: 1,
+                            duration: 0.3
+                        });
+                    }
+                });
+            }
+        }, 600);
+
+        // Check if user has visited before
+        const hasVisited = sessionStorage.getItem('hasVisited');
+        
+        if (hasVisited) {
+            // Skip preloader for returning visitors
+            document.getElementById('preloader').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+        } else {
+            // Show preloader for first-time visitors
+            // Hide preloader after loading
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    clearInterval(textInterval);
+                    
+                    // Mark as visited
+                    sessionStorage.setItem('hasVisited', 'true');
+                    
+                    // Exit animation
+                    const exitTl = gsap.timeline({
+                        onComplete: () => {
+                            document.getElementById('preloader').style.display = 'none';
+                            document.getElementById('main-content').classList.remove('hidden');
+                            
+                            // Entrance animation for main content
+                            gsap.fromTo("#main-content", 
+                                { opacity: 0, y: 30 },
+                                { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+                            );
+                        }
+                    });
+
+                    exitTl.to("#loading-text", {
+                        opacity: 0,
+                        y: -20,
+                        duration: 0.5
+                    })
+                    .to("#loading-title", {
+                        opacity: 0,
+                        y: -20,
+                        duration: 0.5
+                    }, "-=0.3")
+                    .to("#main-loader", {
+                        scale: 0,
+                        rotation: "+=180",
+                        duration: 0.8,
+                        ease: "back.in(1.7)"
+                    }, "-=0.3")
+                    .to("#preloader", {
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "power2.inOut"
+                    }, "-=0.5");
+
+                }, 3500); // Show for 3.5 seconds
+            });
+        }
     </script>
 @endsection

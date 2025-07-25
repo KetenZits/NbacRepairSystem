@@ -41,6 +41,9 @@
 </style>
 
 @section('content')
+
+
+
 <div class="min-h-screen bg-gradient-to-br">
   <div class="container mx-auto px-5 py-6">
     <!-- Navigation Bar -->
@@ -524,6 +527,6 @@ const startDatePicker = flatpickr("#start_date", {
             startDatePicker.setDate(startDate);
             endDatePicker.setDate(endDate);
         }
-
+        
 </script>
 @endpush
