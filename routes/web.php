@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\GraphController;
 use App\Models\ServiceUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/service-update/{id}', [ServiceController::class, 'serviceupdate'])->name('service-update');
     Route::post('/export-excel', [ServiceController::class, 'exportExcel'])->name('export.excel');
     
+    Route::get('/graph', [GraphController::class, 'index'])->name('graph');
+    Route::get('/chart/day', [GraphController::class, 'chartByDay']);
+    Route::get('/chart/week', [GraphController::class, 'chartByWeek']);
+    Route::get('/chart/month', [GraphController::class, 'chartByMonth']);
+    Route::get('/chart/year', [GraphController::class, 'chartByYear']);
+
 });
 
 Route::get('/', function () {

@@ -212,7 +212,7 @@
                         <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
                             <i class="fas fa-home text-lg"></i>
                         </div>
-                        <span class="font-medium">หน้าแรก</span>
+                        <span class="font-medium">Home</span>
                         <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
                     </a>
                     
@@ -222,19 +222,19 @@
                             <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
                                 <i class="fas fa-cogs text-lg"></i>
                             </div>
-                            <span class="font-medium flex-1">บริการซ่อม</span>
+                            <span class="font-medium flex-1">Service</span>
                             <i class="fas fa-chevron-down text-sm transition-transform duration-300" id="serviceChevron"></i>
                         </button>
                         
                         <div class="service-dropdown ml-14 mt-2 space-y-1" id="serviceDropdown">
                             <a href="/service-form" target="_blank" class="flex items-center space-x-3 text-blue-100 hover:text-white p-3 rounded-lg hover:bg-white/10 transition-all duration-300">
                                 <i class="fas fa-plus-circle text-sm"></i>
-                                <span>แจ้งซ่อม</span>
+                                <span>Service Form</span>
                                 <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
                             </a>
                             <a href="/service-view" target="_blank" class="flex items-center space-x-3 text-blue-100 hover:text-white p-3 rounded-lg hover:bg-white/10 transition-all duration-300">
                                 <i class="fas fa-list-alt text-sm"></i>
-                                <span>ดูรายการซ่อม</span>
+                                <span>View Service</span>
                                 <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
                             </a>
                         </div>
@@ -244,8 +244,22 @@
                         <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
                             <i class="fas fa-info-circle text-lg"></i>
                         </div>
-                        <span class="font-medium">เกี่ยวกับเรา</span>
+                        <span class="font-medium">About Us</span>
                         <i class="fas fa-external-link-alt text-xs ml-auto opacity-60"></i>
+                    </a>
+                    <a href="/dashboard" target="_blank" class="menu-item flex items-center space-x-4 text-white hover:text-blue-100 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-table-list text-lg"></i>
+                        </div>
+                        <span class="font-medium">Dashboard</span>
+                        <i class="fa-solid fa-folder-open text-xs ml-auto opacity-60"></i>
+                    </a>
+                    <a href="/graph" target="_blank" class="menu-item flex items-center space-x-4 text-white hover:text-blue-100 p-4 rounded-xl transition-all duration-300">
+                        <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                            <i class="far fa-chart-bar text-lg"></i>
+                        </div>
+                        <span class="font-medium">Graph</span>
+                        <i class="far fa-chart-bar text-xs ml-auto opacity-60 -rotate-90"></i>
                     </a>
                 </nav>
                 
