@@ -16,26 +16,27 @@ class GraphController extends Controller
     {
         return view('graph');
     }
-        public function chartByDay()
+    public function chartByDay()
     {
-        $startOfWeek = Carbon::now()->startOfWeek();
-        $endOfWeek = Carbon::now()->endOfWeek();
+        $start = Carbon::now()->subDays(6)->startOfDay();
+        $end = Carbon::now()->endOfDay(); 
 
         $rawData = ServiceUser::select(
-                DB::raw("DAYNAME(date) as day"),
+                DB::raw("DATE(date) as day_date"),
                 DB::raw("COUNT(*) as count")
             )
-            ->whereBetween('date', [$startOfWeek, $endOfWeek])
-            ->groupBy('day')
-            ->pluck('count', 'day'); // [Monday => 3, Tuesday => 0, ...]
+            ->whereBetween('date', [$start, $end])
+            ->groupBy('day_date')
+            ->orderBy('day_date')
+            ->pluck('count', 'day_date'); 
 
-        $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         $fullData = [];
-
-        foreach ($days as $day) {
+        for ($i = 0; $i < 7; $i++) {
+            $date = Carbon::now()->subDays(6 - $i)->format('Y-m-d');
+            $label = Carbon::createFromFormat('Y-m-d', $date)->format('D');
             $fullData[] = [
-                'label' => $day,
-                'count' => $rawData[$day] ?? 0
+                'label' => $label,
+                'count' => $rawData[$date] ?? 0
             ];
         }
 
@@ -122,6 +123,15 @@ class GraphController extends Controller
         return response()->json([
             'labels' => array_column($fullData, 'label'),
             'data' => array_column($fullData, 'count'),
+        ]);
+    }
+    public function showChartPage(){
+        $done = ServiceUser::where('status', true)->count();
+        $notDone = ServiceUser::where('status', false)->count();
+
+        return response()->json([
+            'done' => $done,
+            'not_done' => $notDone
         ]);
     }
 }

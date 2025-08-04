@@ -192,7 +192,7 @@ About Us
                     </h2>
                     <div class="badge badge-primary badge-lg font-semibold shadow-lg">
                         <i class="fas fa-user mr-2"></i>
-                        Full Stack Developer
+                        Hyper Full Stack Developer
                     </div>
                 </div>
                 <div class="space-y-3">
@@ -298,7 +298,7 @@ About Us
                     </h2>
                     <div class="badge badge-primary badge-lg font-semibold shadow-lg">
                         <i class="fas fa-user mr-2"></i>
-                        Hardware
+                        Hardware, Cleaner
                     </div>
                 </div>
                 <div class="space-y-3">

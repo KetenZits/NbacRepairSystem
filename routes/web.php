@@ -44,7 +44,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/chart/week', [GraphController::class, 'chartByWeek']);
     Route::get('/chart/month', [GraphController::class, 'chartByMonth']);
     Route::get('/chart/year', [GraphController::class, 'chartByYear']);
-
+    Route::get('/graph/chart', [GraphController::class, 'showChartPage'])->name('graph.chart');
 });
 
 Route::get('/', function () {

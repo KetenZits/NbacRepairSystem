@@ -79,6 +79,21 @@
                 </div>
             </div>
         </div>
+        <div class="mt-4 flex justify-center items-center">
+            <!-- pie chart -->
+            <div class="glass-effect rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <span class="text-2xl">🎯</span>
+                        รายการที่เสร็จแล้ว
+                    </h2>
+                    <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartsuccess" height="325"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -357,5 +372,48 @@ setInterval(() => {
 
 // Manual refresh function (can be called from button)
 window.refreshCharts = refreshAllCharts;
+
+document.addEventListener("DOMContentLoaded", async function () {
+    const ctx = document.getElementById('chartsuccess').getContext('2d');
+
+    const res = await fetch('/graph/chart');
+    const data = await res.json();
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['เสร็จแล้ว', 'ยังไม่เสร็จ'],
+            datasets: [{
+                label: 'สถานะ',
+                data: [data.done, data.not_done],
+                backgroundColor: ['#10B981', '#EF4444'],
+                borderColor: '#fff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            let label = tooltipItem.label || '';
+                            let value = tooltipItem.raw;
+                            return `${label}: ${value} รายการ`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
 </script>
 @endpush
